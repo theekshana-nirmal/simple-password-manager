@@ -63,8 +63,8 @@
                               </Button>
                               <HBox prefHeight="0.0" prefWidth="308.0" spacing="8.0">
                                  <children>
-                                    <Label text="Don't have an account?" styleClass="lbl"/>
-                                    <Label text="Register" styleClass="link"/>
+                                    <Label styleClass="lbl" text="Don't have an account?" />
+                                    <Label styleClass="link" text="Register" />
                                  </children>
                               </HBox>
                            </children>
