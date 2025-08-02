@@ -3,6 +3,8 @@
     -fx-background-color: #ffffff;
     font-family: "Inter", "Segoe UI", "Roboto", "Arial", sans-serif;
     -fx-font-family: "Inter", "Segoe UI", "Roboto", "Arial", sans-serif;
+    -fx-min-height: 500px;
+    -fx-pref-height: 500px;
 }
 
 .left-pane {
@@ -178,4 +180,11 @@
     cursor: pointer;
     -fx-cursor: hand;
     -fx-text-fill: #6B1CB0;
+}
+
+/* Layout spacing fixes */
+.root {
+    min-height: 500px;
+    -fx-min-height: 500px;
+    -fx-pref-height: 500px;
 }

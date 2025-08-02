@@ -21,9 +21,8 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         // Set the stage style to UNDECORATED
         stage.initStyle(StageStyle.UNDECORATED);
-
         Parent root = loadFXML("fxml/login");
-        scene = new Scene(root, 760, 445);
+        scene = new Scene(root, 760, 500);
 
         // Apply CSS stylesheet directly to the scene
         scene.getStylesheets().add(getClass().getResource("/com/example/css/styles.css").toExternalForm());
