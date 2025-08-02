@@ -106,7 +106,7 @@
     -fx-text-fill: #00000080;
 }
 
-.label {
+.label:not(.title):not(.subtitle) {
     font-size: 12px;
     -fx-font-size: 12px;
     color: #000000;
