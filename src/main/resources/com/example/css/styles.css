@@ -65,6 +65,10 @@
     -fx-background-color: #8023D7;
     color: #fff;
     -fx-text-fill: #fff;
+    border-color: #8023D7;
+    -fx-border-color: #8023D7;
+    border-width: 1px;
+    -fx-border-width: 1px;
 }
 
 
