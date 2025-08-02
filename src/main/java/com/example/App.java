@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -12,9 +13,29 @@ public class App extends Application {
 
     private static Scene scene;
 
+    // For making the window draggable
+    private double xOffset = 0;
+    private double yOffset = 0;
+
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("fxml/primary"), 640, 480);
+        // Set the stage style to UNDECORATED
+        stage.initStyle(StageStyle.UNDECORATED);
+
+        Parent root = loadFXML("fxml/login");
+        scene = new Scene(root, 760, 445);
+
+        // Make the undecorated window draggable
+        root.setOnMousePressed(event -> {
+            xOffset = event.getSceneX();
+            yOffset = event.getSceneY();
+        });
+
+        root.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset);
+            stage.setY(event.getScreenY() - yOffset);
+        });
+
         stage.setScene(scene);
         stage.show();
     }
