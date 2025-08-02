@@ -3,6 +3,7 @@
     -fx-background-color: #ffffff;
     font-family: "Inter", "Segoe UI", "Roboto", "Arial", sans-serif;
     -fx-font-family: "Inter", "Segoe UI", "Roboto", "Arial", sans-serif;
+    min-height: 500px;
     -fx-min-height: 500px;
     -fx-pref-height: 500px;
 }
