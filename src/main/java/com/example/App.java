@@ -25,6 +25,9 @@ public class App extends Application {
         Parent root = loadFXML("fxml/login");
         scene = new Scene(root, 760, 445);
 
+        // Apply CSS stylesheet directly to the scene
+        scene.getStylesheets().add(getClass().getResource("/com/example/css/styles.css").toExternalForm());
+
         // Make the undecorated window draggable
         root.setOnMousePressed(event -> {
             xOffset = event.getSceneX();
