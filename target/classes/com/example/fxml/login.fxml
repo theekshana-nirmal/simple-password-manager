@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
@@ -8,7 +10,14 @@
    <children>
       <BorderPane prefHeight="445.0" prefWidth="760.0">
          <left>
-            <Pane prefHeight="446.0" prefWidth="383.0" styleClass="left-pane" BorderPane.alignment="CENTER" />
+            <Pane prefHeight="446.0" prefWidth="383.0" styleClass="left-pane" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="361.0" fitWidth="375.0" layoutY="85.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/left-side-bg.png" />
+                     </image>
+                  </ImageView>
+               </children></Pane>
          </left>
          <center>
             <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER" />
