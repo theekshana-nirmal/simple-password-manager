@@ -1,0 +1,101 @@
+.root {
+    background-color: #ffffff;
+    -fx-background-color: #ffffff;
+    font-family: "Inter", "Segoe UI", "Roboto", "Arial", sans-serif;
+    -fx-font-family: "Inter", "Segoe UI", "Roboto", "Arial", sans-serif;
+}
+
+.left-pane {
+    background-color: #8023D7;
+    -fx-background-color: #8023D7;
+    padding: 32px;
+    -fx-padding: 32px;
+}
+
+.title {
+    font-size: 32px;
+    -fx-font-size: 32px;
+    font-weight: bold;
+    -fx-font-weight: bold;
+    color: #8023D7;
+    -fx-text-fill: #8023D7;
+}
+
+.tagline {
+    font-size: 14px;
+    -fx-font-size: 14px;
+    color: #00000080;
+    -fx-text-fill: #00000080;
+}
+
+.label {
+    font-size: 12px;
+    -fx-font-size: 12px;
+    color: #000000;
+    -fx-text-fill: #000000;
+}
+
+.text-field,
+.password-field {
+    font-size: 14px;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #999;
+    background-color: #FBFBFB;
+    -fx-background-color: #FBFBFB;
+    border-color: #8023D71A;
+    -fx-border-color: #8023D71A;
+    border-radius: 8px;
+    -fx-border-radius: 8px;
+    padding: 10px;
+    -fx-padding: 10px;
+    -fx-pref-width: 308px;
+}
+
+.text-field:focused,
+.password-field:focused {
+    border-color: #8023D7;
+    -fx-border-color: #8023D7;
+}
+
+.button {
+    background-color: #8023D7;
+    -fx-background-color: #8023D7;
+    color: #fff;
+    -fx-text-fill: #fff;
+    font-size: 12px;
+    -fx-font-size: 12px;
+    padding: 10px 20px;
+    -fx-padding: 10px 20px;
+    border-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-pref-width: 308px;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    -fx-transition: -fx-background-color 0.3s, -fx-border-color 0.3s, -fx-text-fill 0.3s;
+}
+
+
+/* TODO: Color Change */
+.button:hover {
+    background-color: #fff;
+    -fx-background-color: #fff;
+}
+
+.cancel-button {
+    background-color: #fff;
+    -fx-background-color: #fff;
+    color: #FF4D4D;
+    -fx-text-fill: #FF4D4D;
+    font-size: 12px;
+    -fx-font-size: 12px;
+    padding: 10px 20px;
+    -fx-padding: 10px 20px;
+    border-radius: 8px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-pref-width: 308px;
+}
+
+.cancel-button:hover {
+    -fx-underline: true;
+}
