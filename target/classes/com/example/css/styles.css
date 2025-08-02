@@ -12,29 +12,6 @@
     -fx-padding: 32px;
 }
 
-.title {
-    font-size: 32px;
-    -fx-font-size: 32px;
-    font-weight: bold;
-    -fx-font-weight: bold;
-    color: #8023D7;
-    -fx-text-fill: #8023D7;
-}
-
-.subtitle {
-    font-size: 14px;
-    -fx-font-size: 14px;
-    color: #00000080;
-    -fx-text-fill: #00000080;
-}
-
-.label {
-    font-size: 12px;
-    -fx-font-size: 12px;
-    color: #000000;
-    -fx-text-fill: #000000;
-}
-
 .text-field,
 .password-field {
     font-size: 14px;
@@ -110,4 +87,28 @@
     -fx-text-fill: #fff;
     border-color: #FF4D4D;
     -fx-border-color: #FF4D4D;
+}
+
+/* Text styles */
+.title {
+    font-size: 32px !important;
+    -fx-font-size: 32px !important;
+    font-weight: bold !important;
+    -fx-font-weight: bold !important;
+    color: #8023D7 !important;
+    -fx-text-fill: #8023D7 !important;
+}
+
+.subtitle {
+    font-size: 16px;
+    -fx-font-size: 16px;
+    color: #00000080;
+    -fx-text-fill: #00000080;
+}
+
+.label {
+    font-size: 12px;
+    -fx-font-size: 12px;
+    color: #000000;
+    -fx-text-fill: #000000;
 }
