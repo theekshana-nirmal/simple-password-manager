@@ -140,7 +140,7 @@
     -fx-max-width: 308px;
 }
 
-.label:not(.title):not(.subtitle) {
+.lbl {
     font-size: 12px;
     -fx-font-size: 12px;
     color: #000000;
@@ -156,4 +156,18 @@
 #closeButton:hover {
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
+}
+
+/* Don't have an account? Register */
+.link {
+    -fx-text-fill: #8023D7;
+    -fx-font-weight: bold;
+    font-weight: bold;
+}
+
+.link:hover {
+    -fx-underline: true;
+    cursor: pointer;
+    -fx-cursor: hand;
+    -fx-text-fill: #6B1CB0;
 }
