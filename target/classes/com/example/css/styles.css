@@ -81,6 +81,8 @@
     -fx-border-color: #8023D7;
     border-width: 1px;
     -fx-border-width: 1px;
+    cursor: pointer;
+    -fx-cursor: hand;
 }
 
 .cancel {
@@ -116,6 +118,8 @@
     -fx-border-color: #FF4D4D;
     border-width: 1px;
     -fx-border-width: 1px;
+    cursor: pointer;
+    -fx-cursor: hand;
 }
 
 /* Text styles */
