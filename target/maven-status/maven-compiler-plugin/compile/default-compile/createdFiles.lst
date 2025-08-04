@@ -1,3 +1,4 @@
+com\example\controllers\AdminController.class
 com\example\controllers\LoginController.class
 com\example\controllers\RegisterController.class
 module-info.class

@@ -34,7 +34,7 @@
                   <VBox spacing="12.0">
                      <children>
                         <Label styleClass="title" text="Sign in" />
-                        <Label prefWidth="347.0" styleClass="subtitle" text="Enter you email and password to sign in to your account" textOverrun="CLIP" wrapText="true" />
+                        <Label prefWidth="347.0" styleClass="subtitle, subtitle-limited" text="Enter you email and password to sign in to your account" textOverrun="CLIP" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox spacing="8.0">
@@ -84,7 +84,7 @@
                                     <Line endX="205.0" startX="-100.0" stroke="#8023d71a" />
                                     <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="308.0">
                                        <children>
-                                          <Label prefHeight="15.0" prefWidth="120.0" styleClass="link" text="Continue as Guest" />
+                                          <Label onMouseClicked="#handleGuestClick" prefHeight="15.0" prefWidth="120.0" styleClass="link" text="Continue as Guest" />
                                           <Region prefHeight="15.0" prefWidth="98.0" />
                                           <Label contentDisplay="CENTER" onMouseClicked="#handleAdminClick" styleClass="link" text="Login as Admin" />
                                        </children>

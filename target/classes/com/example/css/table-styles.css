@@ -1,0 +1,21 @@
+.table-view .column-header-background {
+    background-color: #ffffff;
+    -fx-background-color: #ffffff;
+    /* White background for the header */
+    -fx-background-insets: 0, 0, 0;
+    /* Remove default insets */
+    padding: 0;
+    -fx-padding: 0;
+}
+
+/* Styling the header cells */
+.table-view .column-header {
+    background-color: transparent;
+    -fx-background-color: transparent;
+    border-width: 0 0 1px 0;
+    -fx-border-width: 0 0 1px 0;
+    border-color: #e0e0e0;
+    -fx-border-color: #e0e0e0;
+    border-style: solid;
+    -fx-border-style: solid;
+}
