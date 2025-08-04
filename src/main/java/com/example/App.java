@@ -19,8 +19,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // Set the stage style to UNDECORATED
-        stage.initStyle(StageStyle.UNDECORATED);
+        // Set the stage style to TRANSPARENT
+        stage.initStyle(StageStyle.TRANSPARENT);
         Parent root = loadFXML("fxml/login");
         scene = new Scene(root, 760, 445);
 
