@@ -31,6 +31,8 @@
     -fx-border-width: 0 0 1px 0;
     border-color: #e0e0e0;
     -fx-border-color: #e0e0e0;
+    border-style: solid;
+    -fx-border-style: solid;
 }
 
 /* Styling the header text */
@@ -53,6 +55,8 @@
     -fx-border-color: #e0e0e0;
     border-width: 0 0 1px 0;
     -fx-border-width: 0 0 1px 0;
+    border-style: solid;
+    -fx-border-style: solid;
     padding: 10px 15px;
     -fx-padding: 10px 15px;
     -fx-alignment: CENTER_LEFT;
@@ -88,4 +92,35 @@
 .table-view .virtual-flow .scroll-bar:horizontal {
     background-color: transparent;
     -fx-background-color: transparent;
+}
+
+/* Actions column specific styling */
+.table-view .actions-cell {
+    -fx-alignment: CENTER_LEFT;
+    background-color: #ffffff;
+    -fx-background-color: #ffffff;
+    border-color: #e0e0e0;
+    -fx-border-color: #e0e0e0;
+    border-width: 0 0 1px 0;
+    -fx-border-width: 0 0 1px 0;
+    border-style: solid;
+    -fx-border-style: solid;
+    padding: 10px 15px;
+    -fx-padding: 10px 15px;
+}
+
+/* Fix for first row border issue */
+.table-view .table-row-cell:first-child .table-cell {
+    border-top-width: 0;
+    -fx-border-top-width: 0;
+}
+
+/* Ensure consistent borders for all rows */
+.table-view .table-row-cell .table-cell {
+    border-top-width: 0;
+    -fx-border-top-width: 0;
+    border-width: 0 0 1px 0;
+    -fx-border-width: 0 0 1px 0;
+    border-style: solid;
+    -fx-border-style: solid;
 }

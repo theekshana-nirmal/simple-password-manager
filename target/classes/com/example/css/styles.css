@@ -196,21 +196,21 @@
 }
 
 .title-white {
-    font-size: 24px !important;
-    -fx-font-size: 24px !important;
-    font-weight: 700 !important;
-    -fx-font-weight: bold !important;
-    color: #FFFFFF !important;
-    -fx-text-fill: #FFFFFF !important;
+    font-size: 24px;
+    -fx-font-size: 24px;
+    font-weight: bold;
+    -fx-font-weight: bold;
+    color: #ffffff;
+    -fx-text-fill: #ffffff;
+    -fx-alignment: center;
 }
 
 .subtitle-white {
-    font-size: 16px;
-    -fx-font-size: 16px;
-    font-weight: 500;
-    -fx-font-weight: 500;
-    color: #FFFFFF;
-    -fx-text-fill: #FFFFFF;
+    font-size: 14px;
+    -fx-font-size: 14px;
+    color: #ffffff;
+    -fx-text-fill: #ffffff;
+    -fx-alignment: center;
 }
 
 .subtitle-limited {
@@ -262,4 +262,29 @@
     cursor: pointer;
     -fx-cursor: hand;
     -fx-text-fill: #6B1CB0;
+}
+
+/* Action button styles for table */
+.action-btn {
+    background-color: transparent;
+    -fx-background-color: transparent;
+    border: none;
+    border-width: 0;
+    -fx-border-width: 0;
+    padding: 2px;
+    -fx-padding: 2px;
+    cursor: pointer;
+    -fx-cursor: hand;
+    border-radius: 4px;
+    -fx-border-radius: 4px;
+}
+
+.action-btn:hover {
+    background-color: #f0f0f0;
+    -fx-background-color: #f0f0f0;
+}
+
+.action-btn:pressed {
+    background-color: #e0e0e0;
+    -fx-background-color: #e0e0e0;
 }

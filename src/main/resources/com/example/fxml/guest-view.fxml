@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="504.0" maxWidth="973.0" minHeight="504.0" minWidth="973.0" prefHeight="504.0" prefWidth="973.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.RegisterController">
+<BorderPane maxHeight="504.0" maxWidth="973.0" minHeight="504.0" minWidth="973.0" prefHeight="504.0" prefWidth="973.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.GuestController">
    <left>
       <AnchorPane maxHeight="504.0" maxWidth="215.0" minHeight="504.0" minWidth="215.0" prefHeight="504.0" prefWidth="215.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
@@ -37,7 +37,7 @@
                         </VBox>
                      </children>
                   </VBox>
-                  <Button maxHeight="37.0" maxWidth="154.0" minHeight="37.0" minWidth="154.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="154.0" styleClass="white-btn" text="Back to Login">
+                  <Button fx:id="backToLoginButton" maxHeight="37.0" maxWidth="154.0" minHeight="37.0" minWidth="154.0" mnemonicParsing="false" onAction="#handleBackToLogin" prefHeight="37.0" prefWidth="154.0" styleClass="white-btn" text="Back to Login">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -61,12 +61,12 @@
                   <Image url="@../images/close-button.png" />
                </image>
             </ImageView>
-            <TableView layoutX="1.6" layoutY="95.0" minHeight="315.0" minWidth="754.0" prefHeight="315.0" prefWidth="754.0" stylesheets="@../css/tableView.css" AnchorPane.leftAnchor="1.0">
+            <TableView fx:id="passwordTable" layoutX="1.6" layoutY="95.0" minHeight="315.0" minWidth="754.0" prefHeight="315.0" prefWidth="754.0" stylesheets="@../css/tableView.css" AnchorPane.leftAnchor="1.0">
               <columns>
-                <TableColumn editable="false" maxWidth="242.0" minWidth="242.0" prefWidth="242.0" resizable="false" sortable="false" text="Website/App Name" />
-                <TableColumn editable="false" maxWidth="208.0" minWidth="208.0" prefWidth="208.0" resizable="false" sortable="false" text="Username/Email" />
-                  <TableColumn editable="false" maxWidth="152.0" minWidth="152.0" prefWidth="152.0" resizable="false" sortable="false" text="Password" />
-                  <TableColumn editable="false" maxWidth="156.0" minWidth="156.0" prefWidth="156.0" resizable="false" sortable="false" text="Actions" />
+                <TableColumn fx:id="websiteColumn" editable="false" maxWidth="242.0" minWidth="242.0" prefWidth="242.0" resizable="false" sortable="false" text="Website/App Name" />
+                <TableColumn fx:id="usernameColumn" editable="false" maxWidth="208.0" minWidth="208.0" prefWidth="208.0" resizable="false" sortable="false" text="Username/Email" />
+                  <TableColumn fx:id="passwordColumn" editable="false" maxWidth="152.0" minWidth="152.0" prefWidth="152.0" resizable="false" sortable="false" text="Password" />
+                  <TableColumn fx:id="actionsColumn" editable="false" maxWidth="156.0" minWidth="156.0" prefWidth="156.0" resizable="false" sortable="false" text="Actions" />
               </columns>
             </TableView>
          </children>

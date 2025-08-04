@@ -39,4 +39,13 @@ public class RegisterController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleGuestClick() {
+        try {
+            App.setRoot("fxml/guest-view");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
