@@ -27,7 +27,7 @@
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane maxHeight="445.0" maxWidth="377.0" minHeight="445.0" minWidth="377.0" prefHeight="445.0" prefWidth="377.0" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="445.0" maxWidth="377.0" minHeight="445.0" minWidth="377.0" prefHeight="445.0" prefWidth="377.0" styleClass="right-pane" BorderPane.alignment="CENTER">
          <children>
             <VBox layoutX="35.0" layoutY="21.0" spacing="32.0" AnchorPane.topAnchor="21.0">
                <children>

@@ -24,6 +24,8 @@ public class App extends Application {
         Parent root = loadFXML("fxml/login");
         scene = new Scene(root, 760, 445);
 
+        scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+
         // Load the reset stylesheet first
         scene.getStylesheets().add(getClass().getResource("/com/example/css/reset.css").toExternalForm());
 
