@@ -1,5 +1,3 @@
-com\example\controllers\SecondaryController.class
-com\example\controllers\LoginController.class
-com\example\controllers\PrimaryController.class
 module-info.class
 com\example\App.class
+com\example\controllers\LoginController.class
