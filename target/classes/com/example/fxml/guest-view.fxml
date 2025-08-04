@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
 <BorderPane maxHeight="504.0" maxWidth="973.0" minHeight="504.0" minWidth="973.0" prefHeight="504.0" prefWidth="973.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.RegisterController">
    <left>
@@ -15,11 +17,22 @@
                   <Image url="@../images/guest-left-side-bg.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="65.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/guest-mode-icon.png" />
-               </image>
-            </ImageView>
+            <VBox alignment="CENTER" layoutX="54.0" layoutY="41.0" spacing="16.0">
+               <children>
+                  <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/guest-mode-icon.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <Label styleClass="title-white" text="Welcome" />
+                        <Label alignment="CENTER" styleClass="subtitle-white" text="Guest Mode" textOverrun="CLIP" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            <Button layoutX="78.0" layoutY="208.0" mnemonicParsing="false" styleClass="white-btn" text="Button" />
          </children>
       </AnchorPane>
    </left>
@@ -28,6 +41,11 @@
          <children>
             <Label layoutX="314.0" layoutY="14.0" styleClass="title" text="DEMO VIEW" />
             <Label layoutX="225.0" layoutY="54.0" styleClass="subtitle" text="All your credentials stored securely in one place" textOverrun="CLIP" wrapText="true" />
+            <ImageView fx:id="closeButton" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#handleCloseButton" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+               <image>
+                  <Image url="@../images/close-button.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </right>
