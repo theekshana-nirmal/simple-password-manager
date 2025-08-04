@@ -61,12 +61,12 @@
                   <Image url="@../images/close-button.png" />
                </image>
             </ImageView>
-            <TableView fx:id="passwordTable" layoutX="1.6" layoutY="95.0" minHeight="315.0" minWidth="754.0" prefHeight="315.0" prefWidth="754.0" stylesheets="@../css/tableView.css" AnchorPane.leftAnchor="1.0">
+            <TableView fx:id="passwordTable" layoutX="1.6" layoutY="95.0" minHeight="315.0" minWidth="754.0" prefHeight="315.0" prefWidth="754.0" stylesheets="@../css/table-styles.css" AnchorPane.leftAnchor="1.0">
               <columns>
-                <TableColumn fx:id="websiteColumn" editable="false" maxWidth="242.0" minWidth="242.0" prefWidth="242.0" resizable="false" sortable="false" text="Website/App Name" />
-                <TableColumn fx:id="usernameColumn" editable="false" maxWidth="208.0" minWidth="208.0" prefWidth="208.0" resizable="false" sortable="false" text="Username/Email" />
-                  <TableColumn fx:id="passwordColumn" editable="false" maxWidth="152.0" minWidth="152.0" prefWidth="152.0" resizable="false" sortable="false" text="Password" />
-                  <TableColumn fx:id="actionsColumn" editable="false" maxWidth="156.0" minWidth="156.0" prefWidth="156.0" resizable="false" sortable="false" text="Actions" />
+                <TableColumn fx:id="websiteColumn" editable="false" maxWidth="242.0" minWidth="-1.0" prefWidth="242.0" resizable="false" sortable="false" text="Website/App Name" />
+                <TableColumn fx:id="usernameColumn" editable="false" maxWidth="208.0" minWidth="-1.0" prefWidth="208.0" resizable="false" sortable="false" text="Username/Email" />
+                  <TableColumn fx:id="passwordColumn" editable="false" maxWidth="152.0" minWidth="-1.0" prefWidth="152.0" resizable="false" sortable="false" text="Password" />
+                  <TableColumn fx:id="actionsColumn" editable="false" maxWidth="150.0" minWidth="-1.0" prefWidth="150.0" resizable="false" sortable="false" text="Actions" />
               </columns>
             </TableView>
          </children>
