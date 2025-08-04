@@ -1,0 +1,91 @@
+/* Styling the overall TableView */
+.table-view {
+    background-color: #f5f5f5;
+    -fx-background-color: #f5f5f5;
+
+    border-color: #e0e0e0;
+    -fx-border-color: #e0e0e0;
+
+    border-width: 1px;
+    -fx-border-width: 1px;
+    padding: 0;
+    -fx-padding: 0;
+}
+
+/* Styling the TableView header */
+.table-view .column-header-background {
+    background-color: #ffffff;
+    -fx-background-color: #ffffff;
+    /* White background for the header */
+    -fx-background-insets: 0, 0, 0;
+    /* Remove default insets */
+    padding: 0;
+    -fx-padding: 0;
+}
+
+/* Styling the header cells */
+.table-view .column-header {
+    background-color: transparent;
+    -fx-background-color: transparent;
+    border-width: 0 0 1px 0;
+    -fx-border-width: 0 0 1px 0;
+    border-color: #e0e0e0;
+    -fx-border-color: #e0e0e0;
+}
+
+/* Styling the header text */
+.table-view .column-header .label {
+    -fx-text-fill: #616161;
+    font-weight: bold;
+    -fx-font-weight: bold;
+    padding: 10px 15px;
+    -fx-padding: 10px 15px;
+    -fx-alignment: CENTER_LEFT;
+
+}
+
+
+.table-view .table-cell {
+    background-color: #ffffff;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #424242;
+    border-color: #e0e0e0;
+    -fx-border-color: #e0e0e0;
+    border-width: 0 0 1px 0;
+    -fx-border-width: 0 0 1px 0;
+    padding: 10px 15px;
+    -fx-padding: 10px 15px;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .table-row-cell:odd {
+    background-color: #fafafa;
+    -fx-background-color: #fafafa;
+
+}
+
+.table-view .table-row-cell:even {
+    background-color: #ffffff;
+    -fx-background-color: #ffffff;
+}
+
+.table-view .table-row-cell:selected {
+    background-color: #d1c4e9;
+    -fx-background-color: #d1c4e9;
+    /* Light purple for selected rows */
+    -fx-text-fill: #212121;
+    /* Dark text for contrast */
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .increment-button,
+.table-view .virtual-flow .scroll-bar:vertical .decrement-button {
+    padding: 0;
+    -fx-padding: 0;
+}
+
+/* Remove default scroll pane styling */
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:horizontal {
+    background-color: transparent;
+    -fx-background-color: transparent;
+}
