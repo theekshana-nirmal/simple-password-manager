@@ -14,31 +14,42 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane maxHeight="445.0" maxWidth="760.0" minHeight="445.0" minWidth="760.0" prefHeight="445.0" prefWidth="760.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.LoginController">
+<BorderPane maxHeight="504.0" maxWidth="760.0" minHeight="504.0" minWidth="760.0" prefHeight="504.0" prefWidth="760.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.LoginController">
    <left>
-      <AnchorPane maxHeight="445.0" maxWidth="383.0" minHeight="445.0" minWidth="383.0" prefHeight="445.0" prefWidth="383.0" styleClass="left-pane" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="504.0" maxWidth="383.0" minHeight="504.0" minWidth="383.0" prefHeight="504.0" prefWidth="383.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="366.0" fitWidth="376.0" layoutX="92.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                <image>
-                  <Image url="@../images/left-side-bg.png" />
+                  <Image url="@../images/logo-register.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
    </left>
    <right>
-      <AnchorPane maxHeight="445.0" maxWidth="377.0" minHeight="445.0" minWidth="377.0" prefHeight="445.0" prefWidth="377.0" styleClass="right-pane" BorderPane.alignment="CENTER">
+      <AnchorPane maxHeight="504.0" maxWidth="377.0" minHeight="504.0" minWidth="377.0" prefHeight="504.0" prefWidth="377.0" styleClass="right-pane" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="35.0" layoutY="21.0" spacing="32.0" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="16.0">
+            <VBox layoutX="35.0" layoutY="16.0" spacing="32.0" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="16.0">
                <children>
                   <VBox spacing="12.0">
                      <children>
-                        <Label styleClass="title" text="Sign in" />
-                        <Label prefWidth="347.0" styleClass="subtitle" text="Enter you email and password to sign in to your account" textOverrun="CLIP" wrapText="true" />
+                        <Label styleClass="title" text="Create Account" />
+                        <Label prefWidth="347.0" styleClass="subtitle" text="Sign up to get started with your new account" textOverrun="CLIP" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox spacing="8.0">
                      <children>
+                        <VBox spacing="8.0">
+                           <children>
+                              <HBox spacing="2.0">
+                                 <children>
+                                    <Label prefHeight="15.0" text="Name" />
+                                    <Label prefHeight="15.0" text="*" textFill="#ff5454" />
+                                 </children>
+                              </HBox>
+                              <TextField promptText="Enter your name" />
+                           </children>
+                        </VBox>
                         <VBox spacing="8.0">
                            <children>
                               <HBox spacing="2.0">
@@ -65,7 +76,7 @@
                   </VBox>
                   <VBox spacing="16.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="350.0" text="Sign in">
+                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="350.0" text="Create an Account">
                            <styleClass>
                               <String fx:value="primary" />
                               <String fx:value="btn" />
@@ -75,8 +86,8 @@
                            <children>
                               <HBox prefHeight="0.0" prefWidth="308.0" spacing="8.0">
                                  <children>
-                                    <Label styleClass="lbl" text="Don't have an account?" />
-                                    <Label styleClass="link" text="Register" />
+                                    <Label styleClass="lbl" text="Already have an account?" />
+                                    <Label styleClass="link" text="Log In" />
                                  </children>
                               </HBox>
                               <VBox spacing="16.0">

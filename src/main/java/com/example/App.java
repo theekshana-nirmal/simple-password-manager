@@ -21,8 +21,8 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         // Set the stage style to TRANSPARENT
         stage.initStyle(StageStyle.TRANSPARENT);
-        Parent root = loadFXML("fxml/login");
-        scene = new Scene(root, 760, 445);
+        Parent root = loadFXML("fxml/register");
+        scene = new Scene(root);
 
         scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
 
