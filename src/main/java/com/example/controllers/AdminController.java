@@ -4,17 +4,13 @@ import com.example.App;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
-import javafx.scene.control.Label;
 
 import java.io.IOException;
 
-public class RegisterController {
+public class AdminController {
 
     @FXML
     private ImageView closeButton;
-
-    @FXML
-    private Label loginLabel;
 
     @FXML
     private void handleCloseButton() {
@@ -32,9 +28,9 @@ public class RegisterController {
     }
 
     @FXML
-    private void handleAdminClick() {
+    private void handleRegisterClick() {
         try {
-            App.setRoot("fxml/admin-login");
+            App.setRoot("fxml/register");
         } catch (IOException e) {
             e.printStackTrace();
         }

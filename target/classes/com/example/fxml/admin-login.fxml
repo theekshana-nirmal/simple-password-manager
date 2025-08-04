@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane maxWidth="760.0" minHeight="445.0" minWidth="760.0" prefHeight="445.0" prefWidth="760.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.LoginController">
+<BorderPane maxWidth="760.0" minHeight="445.0" minWidth="760.0" prefHeight="445.0" prefWidth="760.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.AdminController">
    <left>
       <AnchorPane maxWidth="383.0" minHeight="445.0" minWidth="383.0" prefHeight="445.0" prefWidth="383.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
@@ -85,7 +85,7 @@
                                        <children>
                                           <Label prefHeight="15.0" prefWidth="120.0" styleClass="link" text="Continue as Guest" />
                                           <Region prefHeight="15.0" prefWidth="105.0" />
-                                          <Label contentDisplay="CENTER" styleClass="link" text="Login as User" />
+                                          <Label contentDisplay="CENTER" onMouseClicked="#handleLoginClick" styleClass="link" text="Login as User" />
                                        </children>
                                     </HBox>
                                  </children>

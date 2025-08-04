@@ -23,7 +23,7 @@ public class App extends Application {
         primaryStage = stage; // Store the stage reference
         // Set the stage style to TRANSPARENT
         stage.initStyle(StageStyle.TRANSPARENT);
-        Parent root = loadFXML("fxml/login");
+        Parent root = loadFXML("fxml/register");
         scene = new Scene(root);
 
         scene.setFill(javafx.scene.paint.Color.TRANSPARENT);

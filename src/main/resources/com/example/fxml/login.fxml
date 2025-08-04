@@ -86,7 +86,7 @@
                                        <children>
                                           <Label prefHeight="15.0" prefWidth="120.0" styleClass="link" text="Continue as Guest" />
                                           <Region prefHeight="15.0" prefWidth="98.0" />
-                                          <Label contentDisplay="CENTER" styleClass="link" text="Login as Admin" />
+                                          <Label contentDisplay="CENTER" onMouseClicked="#handleAdminClick" styleClass="link" text="Login as Admin" />
                                        </children>
                                     </HBox>
                                  </children>

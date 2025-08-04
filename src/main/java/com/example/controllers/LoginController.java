@@ -27,4 +27,13 @@ public class LoginController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleAdminClick() {
+        try {
+            App.setRoot("fxml/admin-login");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
