@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="504.0" maxWidth="973.0" minHeight="504.0" minWidth="973.0" prefHeight="504.0" prefWidth="973.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.RegisterController">
+   <left>
+      <AnchorPane maxHeight="504.0" maxWidth="215.0" minHeight="504.0" minWidth="215.0" prefHeight="504.0" prefWidth="215.0" styleClass="left-pane" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="205.0" fitWidth="211.0" layoutX="92.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+               <image>
+                  <Image url="@../images/guest-left-side-bg.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="80.0" fitWidth="80.0" layoutX="65.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/guest-mode-icon.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane maxHeight="504.0" maxWidth="758.0" minHeight="504.0" minWidth="758.0" prefHeight="504.0" prefWidth="758.0" styleClass="right-pane" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="314.0" layoutY="14.0" styleClass="title" text="DEMO VIEW" />
+            <Label layoutX="225.0" layoutY="54.0" styleClass="subtitle" text="All your credentials stored securely in one place" textOverrun="CLIP" wrapText="true" />
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

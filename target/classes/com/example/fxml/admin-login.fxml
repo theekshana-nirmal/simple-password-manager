@@ -14,13 +14,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane maxWidth="760.0" minHeight="445.0" minWidth="760.0" prefHeight="445.0" prefWidth="760.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.LoginController">
+<BorderPane maxWidth="760.0" minHeight="445.0" minWidth="760.0" prefHeight="445.0" prefWidth="760.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.AdminController">
    <left>
       <AnchorPane maxWidth="383.0" minHeight="445.0" minWidth="383.0" prefHeight="445.0" prefWidth="383.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="366.0" fitWidth="376.0" layoutX="92.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+            <ImageView fitHeight="366.0" fitWidth="376.0" layoutX="92.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@../images/left-side-bg.png" />
+                  <Image url="@../images/admin-left-side-bg.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="140.0" fitWidth="331.0" layoutX="14.0" layoutY="282.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="16.0">
+               <image>
+                  <Image url="@../images/admin-text.png" />
                </image>
             </ImageView>
          </children>
@@ -33,8 +38,8 @@
                <children>
                   <VBox spacing="12.0">
                      <children>
-                        <Label styleClass="title" text="Sign in" />
-                        <Label prefWidth="347.0" styleClass="subtitle, subtitle-limited" text="Enter you email and password to sign in to your account" textOverrun="CLIP" wrapText="true" />
+                        <Label styleClass="title" text="Admin Login" />
+                        <Label prefWidth="347.0" styleClass="subtitle" text="Administrative access to manage user accounts" textOverrun="CLIP" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox spacing="8.0">
@@ -43,29 +48,29 @@
                            <children>
                               <HBox spacing="2.0">
                                  <children>
-                                    <Label prefHeight="15.0" text="Email" />
+                                    <Label prefHeight="15.0" text="Admin Email" />
                                     <Label prefHeight="15.0" text="*" textFill="#ff5454" />
                                  </children>
                               </HBox>
-                              <TextField promptText="Enter your email" />
+                              <TextField promptText="Enter admin email" />
                            </children>
                         </VBox>
                         <VBox spacing="8.0">
                            <children>
                               <HBox spacing="2.0">
                                  <children>
-                                    <Label prefHeight="15.0" text="Password" />
+                                    <Label prefHeight="15.0" text="Admin Password" />
                                     <Label prefHeight="15.0" text="*" textFill="#ff5454" />
                                  </children>
                               </HBox>
-                              <PasswordField promptText="Enter your password" />
+                              <PasswordField promptText="Enter admin password" />
                            </children>
                         </VBox>
                      </children>
                   </VBox>
-                  <VBox spacing="16.0">
+                  <VBox spacing="48.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="350.0" text="Sign in">
+                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="350.0" text="Login as Admin">
                            <styleClass>
                               <String fx:value="primary" />
                               <String fx:value="btn" />
@@ -73,20 +78,14 @@
                         </Button>
                         <VBox spacing="16.0">
                            <children>
-                              <HBox prefHeight="0.0" prefWidth="308.0" spacing="8.0">
-                                 <children>
-                                    <Label styleClass="lbl" text="Don't have an account?" />
-                                    <Label fx:id="registerLabel" onMouseClicked="#handleRegisterClick" styleClass="link" text="Register" />
-                                 </children>
-                              </HBox>
                               <VBox spacing="16.0">
                                  <children>
                                     <Line endX="205.0" startX="-100.0" stroke="#8023d71a" />
                                     <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="308.0">
                                        <children>
                                           <Label prefHeight="15.0" prefWidth="120.0" styleClass="link" text="Continue as Guest" />
-                                          <Region prefHeight="15.0" prefWidth="98.0" />
-                                          <Label contentDisplay="CENTER" onMouseClicked="#handleAdminClick" styleClass="link" text="Login as Admin" />
+                                          <Region prefHeight="15.0" prefWidth="105.0" />
+                                          <Label contentDisplay="CENTER" onMouseClicked="#handleLoginClick" styleClass="link" text="Login as User" />
                                        </children>
                                     </HBox>
                                  </children>
