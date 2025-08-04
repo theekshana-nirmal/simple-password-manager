@@ -10,92 +10,89 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="760.0" styleClass="root" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.LoginController">
-   <children>
-      <BorderPane prefHeight="500.0" prefWidth="760.0">
-         <left>
-            <Pane prefHeight="446.0" prefWidth="383.0" styleClass="left-pane" BorderPane.alignment="CENTER">
+<BorderPane maxHeight="445.0" maxWidth="760.0" minHeight="445.0" minWidth="760.0" prefHeight="445.0" prefWidth="760.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.LoginController">
+   <left>
+      <AnchorPane maxHeight="445.0" maxWidth="383.0" minHeight="445.0" minWidth="383.0" prefHeight="445.0" prefWidth="383.0" styleClass="left-pane" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="366.0" fitWidth="376.0" layoutX="92.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+               <image>
+                  <Image url="@../images/left-side-bg.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+   <right>
+      <AnchorPane maxHeight="445.0" maxWidth="377.0" minHeight="445.0" minWidth="377.0" prefHeight="445.0" prefWidth="377.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="35.0" layoutY="21.0" spacing="32.0" AnchorPane.topAnchor="21.0">
                <children>
-                  <ImageView fitHeight="361.0" fitWidth="375.0" layoutX="2.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/left-side-bg.png" />
-                     </image>
-                  </ImageView>
-               </children></Pane>
-         </left>
-         <center>
-            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
-               <children>
-                  <VBox layoutX="34.0" layoutY="45.0" spacing="24.0">
+                  <VBox spacing="12.0">
                      <children>
-                        <VBox spacing="12.0">
+                        <Label styleClass="title" text="Sign in" />
+                        <Label prefWidth="347.0" styleClass="subtitle" text="Enter you email and password to sign in to your account" textOverrun="CLIP" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="8.0">
+                     <children>
+                        <VBox spacing="8.0">
                            <children>
-                              <Label styleClass="title" text="Sign in" />
-                              <Label prefWidth="347.0" styleClass="subtitle" text="Enter you email and password to sign in to your account" textOverrun="CLIP" wrapText="true" />
+                              <Label prefHeight="15.0" prefWidth="68.0" text="Email" />
+                              <TextField />
                            </children>
                         </VBox>
                         <VBox spacing="8.0">
                            <children>
-                              <VBox spacing="8.0">
-                                 <children>
-                                    <Label prefHeight="15.0" prefWidth="68.0" text="Email" />
-                                    <TextField />
-                                 </children>
-                              </VBox>
-                              <VBox spacing="8.0">
-                                 <children>
-                                    <Label prefHeight="15.0" prefWidth="68.0" text="Password" />
-                                    <PasswordField />
-                                 </children>
-                              </VBox>
+                              <Label prefHeight="15.0" prefWidth="68.0" text="Password" />
+                              <PasswordField />
                            </children>
                         </VBox>
+                     </children>
+                  </VBox>
+                  <VBox spacing="16.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="350.0" text="Sign in">
+                           <styleClass>
+                              <String fx:value="primary" />
+                              <String fx:value="btn" />
+                           </styleClass>
+                        </Button>
                         <VBox spacing="16.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="350.0" text="Sign in">
-                                 <styleClass>
-                                    <String fx:value="primary" />
-                                    <String fx:value="btn" />
-                                 </styleClass>
-                              </Button>
-                              <VBox spacing="32.0">
+                              <HBox prefHeight="0.0" prefWidth="308.0" spacing="8.0">
                                  <children>
-                                    <HBox prefHeight="0.0" prefWidth="308.0" spacing="8.0">
+                                    <Label styleClass="lbl" text="Don't have an account?" />
+                                    <Label styleClass="link" text="Register" />
+                                 </children>
+                              </HBox>
+                              <VBox spacing="16.0">
+                                 <children>
+                                    <Line endX="205.0" startX="-100.0" stroke="#8023d71a" />
+                                    <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="308.0">
                                        <children>
-                                          <Label styleClass="lbl" text="Don't have an account?" />
-                                          <Label styleClass="link" text="Register" />
+                                          <Label prefHeight="15.0" prefWidth="120.0" styleClass="link" text="Continue as Guest" />
+                                          <Region prefHeight="15.0" prefWidth="98.0" />
+                                          <Label contentDisplay="CENTER" styleClass="link" text="Login as Admin" />
                                        </children>
                                     </HBox>
-                                    <VBox spacing="16.0">
-                                       <children>
-                                          <Line endX="205.0" startX="-100.0" stroke="#8023d71a" />
-                                          <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="308.0">
-                                             <children>
-                                                <Label prefHeight="15.0" prefWidth="120.0" styleClass="link" text="Continue as Guest" />
-                                                <Region prefHeight="15.0" prefWidth="98.0" />
-                                                <Label contentDisplay="CENTER" styleClass="link" text="Login as Admin" />
-                                             </children>
-                                          </HBox>
-                                       </children>
-                                    </VBox>
                                  </children>
                               </VBox>
                            </children>
                         </VBox>
                      </children>
                   </VBox>
-                  <ImageView fx:id="closeButton" fitHeight="25.0" fitWidth="25.0" layoutX="350.0" layoutY="2.0" onMouseClicked="#handleCloseButton" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/close-button.png" />
-                     </image>
-                  </ImageView>
-               </children></Pane>
-         </center>
-      </BorderPane>
-   </children>
-</AnchorPane>
+               </children>
+            </VBox>
+            <ImageView fx:id="closeButton" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#handleCloseButton" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
+               <image>
+                  <Image url="@../images/close-button.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

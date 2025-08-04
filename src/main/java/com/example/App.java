@@ -22,7 +22,10 @@ public class App extends Application {
         // Set the stage style to UNDECORATED
         stage.initStyle(StageStyle.UNDECORATED);
         Parent root = loadFXML("fxml/login");
-        scene = new Scene(root, 760, 500);
+        scene = new Scene(root, 760, 445);
+
+        // Load the reset stylesheet first
+        scene.getStylesheets().add(getClass().getResource("/com/example/css/reset.css").toExternalForm());
 
         // Apply CSS stylesheet directly to the scene
         scene.getStylesheets().add(getClass().getResource("/com/example/css/styles.css").toExternalForm());

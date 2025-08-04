@@ -1,24 +1,23 @@
 .root {
-    background-color: #ffffff;
-    -fx-background-color: #ffffff;
     font-family: "Inter", "Segoe UI", "Roboto", "Arial", sans-serif;
     -fx-font-family: "Inter", "Segoe UI", "Roboto", "Arial", sans-serif;
-    min-height: 500px;
-    -fx-min-height: 500px;
-    -fx-pref-height: 500px;
+    background-color: transparent;
+    -fx-background-color: transparent;
+    margin: 0;
+    -fx-margin: 0;
+    padding: 0;
+    -fx-padding: 0;
 }
 
 .left-pane {
     background-color: #8023D7;
     -fx-background-color: #8023D7;
-    padding: 32px;
-    -fx-padding: 32px;
 }
 
 .text-field,
 .password-field {
-    font-size: 14px;
-    -fx-font-size: 14px;
+    font-size: 12px;
+    -fx-font-size: 12px;
     -fx-prompt-text-fill: #BCBCBC;
     background-color: #FBFBFB;
     -fx-background-color: #FBFBFB;
@@ -133,13 +132,18 @@
     -fx-font-weight: bold !important;
     color: #8023D7 !important;
     -fx-text-fill: #8023D7 !important;
+
+    margin: 0;
+    -fx-margin: 0;
+    padding: 0;
+    -fx-padding: 0;
 }
 
 .subtitle {
     font-size: 16px;
     -fx-font-size: 16px;
-    font-weight: 400;
-    -fx-font-weight: 400;
+    font-weight: 500;
+    -fx-font-weight: 500;
     color: #00000080;
     -fx-text-fill: #00000080;
 
@@ -149,6 +153,11 @@
     -fx-min-width: 308px;
     max-width: 308px;
     -fx-max-width: 308px;
+
+    margin: 0;
+    -fx-margin: 0;
+    padding: 0;
+    -fx-padding: 0;
 }
 
 .lbl {
@@ -156,6 +165,11 @@
     -fx-font-size: 12px;
     color: #000000;
     -fx-text-fill: #000000;
+
+    margin: 0;
+    -fx-margin: 0;
+    padding: 0;
+    -fx-padding: 0;
 }
 
 /* Close button styles */
@@ -174,6 +188,11 @@
     -fx-text-fill: #8023D7;
     -fx-font-weight: bold;
     font-weight: bold;
+
+    margin: 0;
+    -fx-margin: 0;
+    padding: 0;
+    -fx-padding: 0;
 }
 
 .link:hover {
@@ -181,11 +200,4 @@
     cursor: pointer;
     -fx-cursor: hand;
     -fx-text-fill: #6B1CB0;
-}
-
-/* Layout spacing fixes */
-.root {
-    min-height: 500px;
-    -fx-min-height: 500px;
-    -fx-pref-height: 500px;
 }
