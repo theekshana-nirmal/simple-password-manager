@@ -12,6 +12,7 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static Stage primaryStage; // Store reference to the primary stage
 
     // For making the window draggable
     private double xOffset = 0;
@@ -19,6 +20,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        primaryStage = stage; // Store the stage reference
         // Set the stage style to TRANSPARENT
         stage.initStyle(StageStyle.TRANSPARENT);
         Parent root = loadFXML("fxml/register");
@@ -48,7 +50,13 @@ public class App extends Application {
     }
 
     public static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
+        Parent newRoot = loadFXML(fxml);
+        scene.setRoot(newRoot);
+
+        // Resize the window to fit the new content
+        if (primaryStage != null) {
+            primaryStage.sizeToScene();
+        }
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
