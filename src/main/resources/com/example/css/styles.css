@@ -8,15 +8,16 @@
     -fx-background-radius: 8px;
     border-radius: 8px;
     -fx-border-radius: 8px;
-    border-color: #8023D7;
-    -fx-border-color: #8023D7;
-    border-width: 1px;
-    -fx-border-width: 1px;
 }
 
 .right-pane {
     background-color: #FFFFFF;
     -fx-background-color: #FFFFFF;
+
+    border-color: #8023D7;
+    -fx-border-color: #8023D7;
+    border-width: 1px;
+    -fx-border-width: 1px;
 
     -fx-background-radius: 0px 8px 8px 0px;
     border-radius: 0px 8px 8px 0px;
