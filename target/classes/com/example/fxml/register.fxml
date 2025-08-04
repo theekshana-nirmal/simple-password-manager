@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane maxHeight="504.0" maxWidth="760.0" minHeight="504.0" minWidth="760.0" prefHeight="504.0" prefWidth="760.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.LoginController">
+<BorderPane maxHeight="504.0" maxWidth="760.0" minHeight="504.0" minWidth="760.0" prefHeight="504.0" prefWidth="760.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.RegisterController">
    <left>
       <AnchorPane maxHeight="504.0" maxWidth="383.0" minHeight="504.0" minWidth="383.0" prefHeight="504.0" prefWidth="383.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
@@ -87,7 +87,7 @@
                               <HBox prefHeight="0.0" prefWidth="308.0" spacing="8.0">
                                  <children>
                                     <Label styleClass="lbl" text="Already have an account?" />
-                                    <Label styleClass="link" text="Log In" />
+                                    <Label fx:id="loginLabel" onMouseClicked="#handleLoginClick" styleClass="link" text="Log In" />
                                  </children>
                               </HBox>
                               <VBox spacing="16.0">
