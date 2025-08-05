@@ -32,6 +32,20 @@
     -fx-border-radius: 8px 0 0 8px;
 }
 
+.mini-window {
+    background-color: #FFFFFF;
+    -fx-background-color: #FFFFFF;
+
+    border-color: #8023D7;
+    -fx-border-color: #8023D7;
+    border-width: 1px;
+    -fx-border-width: 1px;
+
+    -fx-background-radius: 8px;
+    border-radius: 8px;
+    -fx-border-radius: 8px;
+}
+
 .text-field,
 .password-field {
     font-size: 12px;
@@ -117,6 +131,30 @@
 }
 
 .white-btn:hover {
+    background-color: #8023D7;
+    -fx-background-color: #8023D7;
+    color: #fff;
+    -fx-text-fill: #fff;
+    border-color: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+    border-width: 1px;
+    -fx-border-width: 1px;
+    cursor: pointer;
+    -fx-cursor: hand;
+}
+
+.logout-btn {
+    background-color: #FFFFFF;
+    -fx-background-color: #FFFFFF;
+    color: #FF4D4D;
+    -fx-text-fill: #FF4D4D;
+    border-color: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+    border-width: 1px;
+    -fx-border-width: 1px;
+}
+
+.logout-btn:hover {
     background-color: #8023D7;
     -fx-background-color: #8023D7;
     color: #fff;

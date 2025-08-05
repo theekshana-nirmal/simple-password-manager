@@ -47,7 +47,7 @@
                                     <Label prefHeight="15.0" text="*" textFill="#ff5454" />
                                  </children>
                               </HBox>
-                              <TextField promptText="Enter your name" />
+                              <TextField fx:id="nameField" promptText="Enter your name" />
                            </children>
                         </VBox>
                         <VBox spacing="8.0">
@@ -58,7 +58,7 @@
                                     <Label prefHeight="15.0" text="*" textFill="#ff5454" />
                                  </children>
                               </HBox>
-                              <TextField promptText="Enter your email" />
+                              <TextField fx:id="emailField" promptText="Enter your email" />
                            </children>
                         </VBox>
                         <VBox spacing="8.0">
@@ -69,14 +69,14 @@
                                     <Label prefHeight="15.0" text="*" textFill="#ff5454" />
                                  </children>
                               </HBox>
-                              <PasswordField promptText="Enter your password" />
+                              <PasswordField fx:id="passwordField" promptText="Enter your password" />
                            </children>
                         </VBox>
                      </children>
                   </VBox>
                   <VBox spacing="16.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="350.0" text="Create an Account">
+                        <Button fx:id="createAccountButton" mnemonicParsing="false" onAction="#handleCreateAccount" prefHeight="36.0" prefWidth="350.0" text="Create an Account">
                            <styleClass>
                               <String fx:value="primary" />
                               <String fx:value="btn" />

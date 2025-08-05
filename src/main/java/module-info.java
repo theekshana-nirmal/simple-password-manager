@@ -5,8 +5,10 @@ module com.example {
     requires transitive javafx.graphics;
 
     opens com.example to javafx.fxml;
+    opens com.example.models to javafx.base;
 
     exports com.example;
     exports com.example.controllers;
+
     opens com.example.controllers to javafx.fxml;
 }

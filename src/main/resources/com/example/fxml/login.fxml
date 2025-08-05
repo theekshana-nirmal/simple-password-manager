@@ -47,7 +47,7 @@
                                     <Label prefHeight="15.0" text="*" textFill="#ff5454" />
                                  </children>
                               </HBox>
-                              <TextField promptText="Enter your email" />
+                              <TextField fx:id="emailField" promptText="Enter your email" />
                            </children>
                         </VBox>
                         <VBox spacing="8.0">
@@ -58,14 +58,14 @@
                                     <Label prefHeight="15.0" text="*" textFill="#ff5454" />
                                  </children>
                               </HBox>
-                              <PasswordField promptText="Enter your password" />
+                              <PasswordField fx:id="passwordField" promptText="Enter your password" />
                            </children>
                         </VBox>
                      </children>
                   </VBox>
                   <VBox spacing="16.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="350.0" text="Sign in">
+                        <Button fx:id="signInButton" mnemonicParsing="false" onAction="#handleSignIn" prefHeight="36.0" prefWidth="350.0" text="Sign in">
                            <styleClass>
                               <String fx:value="primary" />
                               <String fx:value="btn" />
