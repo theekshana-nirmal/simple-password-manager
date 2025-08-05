@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<BorderPane maxWidth="760.0" minHeight="445.0" minWidth="760.0" prefHeight="445.0" prefWidth="760.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.AdminController">
+<BorderPane maxWidth="760.0" minHeight="445.0" minWidth="760.0" prefHeight="445.0" prefWidth="760.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.AdminLoginController">
    <left>
       <AnchorPane maxWidth="383.0" minHeight="445.0" minWidth="383.0" prefHeight="445.0" prefWidth="383.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
@@ -52,7 +52,7 @@
                                     <Label prefHeight="15.0" text="*" textFill="#ff5454" />
                                  </children>
                               </HBox>
-                              <TextField promptText="Enter admin email" />
+                              <TextField fx:id="emailField" promptText="Enter admin email" />
                            </children>
                         </VBox>
                         <VBox spacing="8.0">
@@ -63,14 +63,14 @@
                                     <Label prefHeight="15.0" text="*" textFill="#ff5454" />
                                  </children>
                               </HBox>
-                              <PasswordField promptText="Enter admin password" />
+                              <PasswordField fx:id="passwordField" promptText="Enter admin password" />
                            </children>
                         </VBox>
                      </children>
                   </VBox>
                   <VBox spacing="48.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="36.0" prefWidth="350.0" text="Login as Admin">
+                        <Button mnemonicParsing="false" onAction="#handleLoginClick" prefHeight="36.0" prefWidth="350.0" text="Login as Admin">
                            <styleClass>
                               <String fx:value="primary" />
                               <String fx:value="btn" />
@@ -85,7 +85,7 @@
                                        <children>
                                           <Label onMouseClicked="#handleGuestClick" prefHeight="15.0" prefWidth="120.0" styleClass="link" text="Continue as Guest" />
                                           <Region prefHeight="15.0" prefWidth="105.0" />
-                                          <Label contentDisplay="CENTER" onMouseClicked="#handleLoginClick" styleClass="link" text="Login as User" />
+                                          <Label onMouseClicked="#handleBackClick" styleClass="link" text="Login as User" />
                                        </children>
                                     </HBox>
                                  </children>

@@ -221,4 +221,71 @@ public class UserManager {
             return false;
         }
     }
+
+    /**
+     * Get all registered users
+     * 
+     * @return List of all users
+     */
+    public static List<User> getAllUsers() {
+        return loadUsersFromCSV();
+    }
+
+    /**
+     * Delete a user by email
+     * 
+     * @param email The email of the user to delete
+     * @return true if deletion successful, false otherwise
+     */
+    public static boolean deleteUser(String email) {
+        List<User> users = loadUsersFromCSV();
+
+        // Find the user before removing to get username for password file deletion
+        User userToDelete = null;
+        for (User user : users) {
+            if (user.getEmail().equals(email)) {
+                userToDelete = user;
+                break;
+            }
+        }
+
+        boolean removed = users.removeIf(user -> user.getEmail().equals(email));
+        if (removed && userToDelete != null) {
+            // Delete the user's password file first
+            try {
+                Path passwordFilePath = DataManager.getUserPasswordFilePath(userToDelete.getUsername());
+                if (Files.exists(passwordFilePath)) {
+                    Files.delete(passwordFilePath);
+                    System.out.println("Deleted password file: " + passwordFilePath);
+                }
+            } catch (IOException e) {
+                System.err.println("Error deleting user password file: " + e.getMessage());
+                // Continue with user deletion even if password file deletion fails
+            }
+
+            // Save updated user list
+            String userDataFile = DataManager.getUserDataFilePath().toString();
+            try (PrintWriter writer = new PrintWriter(new FileWriter(userDataFile))) {
+                // Write header
+                writer.println(USER_DATA_HEADER);
+
+                // Write remaining users
+                for (User user : users) {
+                    writer.printf("%s,%s,%s,%s%n",
+                            user.getUsername(),
+                            user.getEmail(),
+                            user.getPasswordHash(),
+                            user.getCreatedAtString());
+                }
+
+                System.out.println("User and all associated data deleted: " + email);
+                return true;
+            } catch (IOException e) {
+                System.err.println("Error deleting user from CSV: " + e.getMessage());
+                return false;
+            }
+        }
+
+        return false;
+    }
 }
