@@ -1,20 +1,43 @@
 package com.example.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * GuestUser class representing users in guest mode.
+ * GuestUser class representing guest access to the application.
  * Demonstrates INHERITANCE by extending BaseUser.
  * Shows POLYMORPHISM by providing guest-specific implementations.
  */
 public class GuestUser extends BaseUser {
 
+    private List<PasswordEntry> samplePasswords;
+
     /**
-     * Create a guest user (temporary, no persistent storage)
+     * Constructor for guest user
      */
     public GuestUser() {
-        super("Guest", "guest@temp.com", "no-password");
+        super("Guest", "guest@example.com", "");
+        initializeSamplePasswords();
     }
 
-    // Polymorphic method implementations - different behavior for guest users
+    /**
+     * Initialize sample passwords for demonstration
+     */
+    private void initializeSamplePasswords() {
+        samplePasswords = new ArrayList<>();
+        samplePasswords.add(new PasswordEntry("github.com", "john_doe", "password123"));
+        samplePasswords.add(new PasswordEntry("google.com", "john.doe@email.com", "mypassword"));
+        samplePasswords.add(new PasswordEntry("facebook.com", "johndoe", "pass1234"));
+    }
+
+    /**
+     * Get sample passwords for demo purposes
+     */
+    public List<PasswordEntry> getSamplePasswords() {
+        return new ArrayList<>(samplePasswords);
+    }
+
+    // Polymorphic method implementations
 
     @Override
     public String getUserType() {
@@ -23,66 +46,26 @@ public class GuestUser extends BaseUser {
 
     @Override
     public boolean canManagePasswords() {
-        return false; // Guest users cannot manage real passwords
+        return false; // Guests cannot manage passwords
     }
 
     @Override
     public boolean hasAdminPrivileges() {
-        return false; // Guest users have no admin privileges
+        return false;
     }
 
     @Override
     public int getMaxPasswordCount() {
-        return 0; // Guest users cannot store any passwords
+        return 0; // Guests cannot save passwords
     }
 
     @Override
     public void performLoginActions() {
-        System.out.println("Guest user accessing demo mode - limited functionality");
+        System.out.println("Guest user accessed the system");
     }
 
     @Override
     public void performLogoutActions() {
-        System.out.println("Guest user session ended");
-    }
-
-    /**
-     * Guest users cannot validate credentials (always false)
-     */
-    @Override
-    public boolean validateCredentials(String password) {
-        return false; // Guest users don't have real credentials
-    }
-
-    /**
-     * Guest users cannot update passwords
-     */
-    @Override
-    public void updatePassword(String newPassword) {
-        throw new UnsupportedOperationException("Guest users cannot update passwords");
-    }
-
-    /**
-     * Check if user can view sample data
-     * 
-     * @return true for guest users
-     */
-    public boolean canViewSampleData() {
-        return true;
-    }
-
-    /**
-     * Get sample password data for demo purposes
-     * 
-     * @return Array of sample password entries
-     */
-    public String[][] getSamplePasswordData() {
-        return new String[][] {
-                { "Facebook", "demo@email.com", "••••••••" },
-                { "Gmail", "demouser123", "••••••••" },
-                { "GitHub", "demo_developer", "••••••••" },
-                { "Netflix", "demo.user", "••••••••" },
-                { "Amazon", "demo@example.com", "••••••••" }
-        };
+        System.out.println("Guest user left the system");
     }
 }
