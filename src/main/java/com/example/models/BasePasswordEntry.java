@@ -2,12 +2,10 @@ package com.example.models;
 
 /**
  * Abstract base class for password entries.
- * Demonstrates ABSTRACTION and ENCAPSULATION principles.
  * Contains common password entry attributes and methods.
  */
 public abstract class BasePasswordEntry {
 
-    // Encapsulated core password entry attributes
     private String website;
     private String username;
     private String password;
@@ -47,7 +45,7 @@ public abstract class BasePasswordEntry {
         this.password = password;
     }
 
-    // Abstract method for polymorphic behavior
+    // Abstract method for validation
     public abstract boolean isValidEntry();
 
     @Override

@@ -8,9 +8,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Utility class for managing user data and authentication
- */
 public class UserManager {
 
     private static final String USER_DATA_HEADER = "Username,Email,PasswordHash";
@@ -141,26 +138,22 @@ public class UserManager {
                     }
                     String[] data = line.split(",");
                     if (data.length >= 3) {
-                        // Handle cases where CreatedAt might be empty or missing
-                        String createdAtString = (data.length >= 4 && !data[3].trim().isEmpty()) ? data[3].trim() : "";
-                        if (createdAtString.isEmpty()) {
-                            // Use 3-parameter constructor for backward compatibility when CreatedAt is
-                            // empty
-                            users.add(new User(
-                                    data[0].trim(),
-                                    data[1].trim(),
-                                    data[2].trim()));
-                        } else {
-                            // Use 4-parameter constructor when CreatedAt is present
+                        // Handle backward compatibility with old CSV format
+                        if (data.length >= 4) {
                             users.add(new User(
                                     data[0].trim(),
                                     data[1].trim(),
                                     data[2].trim(),
-                                    createdAtString));
+                                    data[3].trim()));
+                        } else {
+                            users.add(new User(
+                                    data[0].trim(),
+                                    data[1].trim(),
+                                    data[2].trim()));
                         }
                     }
                 }
-                System.out.println("Loaded " + users.size() + " users from: " + userDataFile);
+                System.out.println("Loaded " + users.size() + " users");
             } else {
                 System.out.println("User data file does not exist, starting with empty user list");
             }

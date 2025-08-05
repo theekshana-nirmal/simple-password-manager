@@ -2,8 +2,6 @@ package com.example.models;
 
 /**
  * PasswordEntry class representing a user's password entry.
- * Demonstrates INHERITANCE by extending BasePasswordEntry.
- * Contains only the core functionality needed for password management.
  */
 public class PasswordEntry extends BasePasswordEntry {
 
@@ -14,9 +12,6 @@ public class PasswordEntry extends BasePasswordEntry {
         super(website, username, password);
     }
 
-    /**
-     * Implementation of abstract method from BasePasswordEntry
-     */
     @Override
     public boolean isValidEntry() {
         return getWebsite() != null && !getWebsite().trim().isEmpty() &&

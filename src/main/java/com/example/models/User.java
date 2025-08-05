@@ -2,42 +2,27 @@ package com.example.models;
 
 /**
  * User model class representing a registered user.
- * Extends BaseUser to implement OOP principles.
- * Contains only the core functionality needed for the password manager.
  */
 public class User extends BaseUser {
-    /**
-     * Constructor for creating a new user
-     */
+
     public User(String username, String email, String passwordHash) {
         super(username, email, passwordHash);
     }
 
-    /**
-     * Constructor for loading existing user from storage (backward compatibility)
-     */
+    // Constructor for backward compatibility with existing data formats
     public User(String username, String email, String passwordHash, String createdAtString) {
         super(username, email, passwordHash);
-        // We ignore the createdAtString since we removed that field for simplification
+        // createdAtString parameter is ignored (kept for data loading compatibility)
     }
-
-    /**
-     * Get created at string for backward compatibility
-     */
-    public String getCreatedAtString() {
-        return ""; // Return empty string since we removed the createdAt field
-    }
-
-    // Implement abstract methods from BaseUser
 
     @Override
     public String getUserType() {
-        return "Normal"; // All created users are normal users
+        return "Normal";
     }
 
     @Override
     public boolean canManagePasswords() {
-        return true; // All registered users can manage passwords
+        return true;
     }
 
     @Override

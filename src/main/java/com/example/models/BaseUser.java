@@ -2,13 +2,10 @@ package com.example.models;
 
 /**
  * Abstract base class for all user types.
- * Demonstrates ABSTRACTION and ENCAPSULATION principles.
- * Contains common user attributes and abstract methods for polymorphic
- * behavior.
+ * Contains common user attributes and abstract methods.
  */
 public abstract class BaseUser {
 
-    // Encapsulated core user attributes
     private String username;
     private String email;
     private String passwordHash;
