@@ -1,5 +1,8 @@
-com\example\controllers\AdminController.class
-com\example\controllers\LoginController.class
 com\example\controllers\RegisterController.class
+com\example\controllers\GuestController.class
 module-info.class
 com\example\App.class
+com\example\controllers\GuestController$1.class
+com\example\controllers\AdminController.class
+com\example\controllers\LoginController.class
+com\example\controllers\GuestController$PasswordEntry.class
