@@ -138,19 +138,11 @@ public class UserManager {
                     }
                     String[] data = line.split(",");
                     if (data.length >= 3) {
-                        // Handle backward compatibility with old CSV format
-                        if (data.length >= 4) {
-                            users.add(new User(
-                                    data[0].trim(),
-                                    data[1].trim(),
-                                    data[2].trim(),
-                                    data[3].trim()));
-                        } else {
-                            users.add(new User(
-                                    data[0].trim(),
-                                    data[1].trim(),
-                                    data[2].trim()));
-                        }
+                        // Only use the 3-parameter constructor - we no longer track creation date
+                        users.add(new User(
+                                data[0].trim(),
+                                data[1].trim(),
+                                data[2].trim()));
                     }
                 }
                 System.out.println("Loaded " + users.size() + " users");
