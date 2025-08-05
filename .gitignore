@@ -64,7 +64,8 @@ crashlytics-build.properties
 # Maven build directory
 /target/
 
-
+# VS Code
+/.vscode/
 
 # Password Manager User Data - Do not track sensitive user information
 src/main/resources/data/
