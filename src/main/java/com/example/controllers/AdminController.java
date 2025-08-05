@@ -36,7 +36,6 @@ public class AdminController implements Initializable {
 
     @FXML
     private Button logoutButton;
-
     @FXML
     private TableView<User> usersTable;
 
@@ -45,9 +44,6 @@ public class AdminController implements Initializable {
 
     @FXML
     private TableColumn<User, String> emailColumn;
-
-    @FXML
-    private TableColumn<User, String> passwordColumn;
 
     @FXML
     private TableColumn<User, Void> actionsColumn;
@@ -64,8 +60,8 @@ public class AdminController implements Initializable {
         // Set up data columns
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password")); // Set up actions column with delete
-                                                                                    // button
+
+        // Set up actions column with delete button
         actionsColumn.setCellFactory(param -> new javafx.scene.control.TableCell<User, Void>() {
             private final Button deleteButton = new Button();
             private final HBox actionBox = new HBox(5);
@@ -124,11 +120,43 @@ public class AdminController implements Initializable {
     }
 
     private void handleDeleteUser(User user) {
-        if (UserManager.deleteUser(user.getEmail())) {
-            userData.remove(user);
-            System.out.println("User deleted: " + user.getEmail());
-        } else {
-            System.out.println("Failed to delete user: " + user.getEmail());
+        // Show confirmation dialog
+        javafx.scene.control.Alert confirmAlert = new javafx.scene.control.Alert(
+                javafx.scene.control.Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirm Deletion");
+        confirmAlert.setHeaderText("Delete User Account");
+        confirmAlert.setContentText("Are you sure you want to delete user '" + user.getUsername() + "'?\n\n" +
+                "This will permanently delete:\n" +
+                "• User account information\n" +
+                "• All saved passwords for this user\n" +
+                "• This action cannot be undone!");
+
+        java.util.Optional<javafx.scene.control.ButtonType> result = confirmAlert.showAndWait();
+        if (result.isPresent() && result.get() == javafx.scene.control.ButtonType.OK) {
+            if (UserManager.deleteUser(user.getEmail())) {
+                userData.remove(user);
+
+                // Show success message
+                javafx.scene.control.Alert successAlert = new javafx.scene.control.Alert(
+                        javafx.scene.control.Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Success");
+                successAlert.setHeaderText("User Deleted");
+                successAlert.setContentText(
+                        "User '" + user.getUsername() + "' and all associated data have been successfully deleted.");
+                successAlert.showAndWait();
+
+                System.out.println("User and all data deleted: " + user.getEmail());
+            } else {
+                // Show error message
+                javafx.scene.control.Alert errorAlert = new javafx.scene.control.Alert(
+                        javafx.scene.control.Alert.AlertType.ERROR);
+                errorAlert.setTitle("Error");
+                errorAlert.setHeaderText("Deletion Failed");
+                errorAlert.setContentText("Failed to delete user '" + user.getUsername() + "'. Please try again.");
+                errorAlert.showAndWait();
+
+                System.out.println("Failed to delete user: " + user.getEmail());
+            }
         }
     }
 

@@ -239,15 +239,37 @@ public class UserManager {
      */
     public static boolean deleteUser(String email) {
         List<User> users = loadUsersFromCSV();
+
+        // Find the user before removing to get username for password file deletion
+        User userToDelete = null;
+        for (User user : users) {
+            if (user.getEmail().equals(email)) {
+                userToDelete = user;
+                break;
+            }
+        }
+
         boolean removed = users.removeIf(user -> user.getEmail().equals(email));
-        if (removed) {
+        if (removed && userToDelete != null) {
+            // Delete the user's password file first
+            try {
+                Path passwordFilePath = DataManager.getUserPasswordFilePath(userToDelete.getUsername());
+                if (Files.exists(passwordFilePath)) {
+                    Files.delete(passwordFilePath);
+                    System.out.println("Deleted password file: " + passwordFilePath);
+                }
+            } catch (IOException e) {
+                System.err.println("Error deleting user password file: " + e.getMessage());
+                // Continue with user deletion even if password file deletion fails
+            }
+
             // Save updated user list
             String userDataFile = DataManager.getUserDataFilePath().toString();
             try (PrintWriter writer = new PrintWriter(new FileWriter(userDataFile))) {
                 // Write header
                 writer.println(USER_DATA_HEADER);
 
-                // Write users
+                // Write remaining users
                 for (User user : users) {
                     writer.printf("%s,%s,%s,%s%n",
                             user.getUsername(),
@@ -256,21 +278,10 @@ public class UserManager {
                             user.getCreatedAtString());
                 }
 
-                // Also delete the user's password file
-                User deletedUser = findUserByEmail(email);
-                if (deletedUser != null) {
-                    String passwordFilePath = DataManager.getUserPasswordFilePath(deletedUser.getUsername()).toString();
-                    try {
-                        Files.deleteIfExists(Path.of(passwordFilePath));
-                    } catch (IOException e) {
-                        System.err.println("Error deleting user password file: " + e.getMessage());
-                    }
-                }
-
-                System.out.println("User deleted: " + email);
+                System.out.println("User and all associated data deleted: " + email);
                 return true;
             } catch (IOException e) {
-                System.err.println("Error deleting user: " + e.getMessage());
+                System.err.println("Error deleting user from CSV: " + e.getMessage());
                 return false;
             }
         }

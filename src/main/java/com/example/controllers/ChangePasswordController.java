@@ -1,5 +1,6 @@
 package com.example.controllers;
 
+import com.example.utils.AdminManager;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -9,11 +10,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -35,10 +31,7 @@ public class ChangePasswordController implements Initializable {
     private Button saveButton;
     @FXML
     private Button cancelButton;
-
     private Stage stage;
-
-    private static final String ADMIN_DATA_FILE = "src/main/resources/data/admin/admin-data.csv";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -98,46 +91,7 @@ public class ChangePasswordController implements Initializable {
     }
 
     private boolean verifyAndUpdateAdminPassword(String currentPassword, String newPassword) {
-        try {
-            // Create admin directory if it doesn't exist
-            java.io.File adminDir = new java.io.File("src/main/resources/data/admin");
-            if (!adminDir.exists()) {
-                adminDir.mkdirs();
-            }
-
-            java.io.File adminFile = new java.io.File(ADMIN_DATA_FILE);
-            String storedPassword = "admin"; // default password
-
-            // Read current password if file exists
-            if (adminFile.exists()) {
-                try (BufferedReader reader = new BufferedReader(new FileReader(adminFile))) {
-                    String line = reader.readLine();
-                    if (line != null && !line.trim().isEmpty()) {
-                        String[] parts = line.split(",");
-                        if (parts.length >= 2) {
-                            storedPassword = parts[1];
-                        }
-                    }
-                }
-            }
-
-            // Verify current password
-            if (!currentPassword.equals(storedPassword)) {
-                return false;
-            }
-
-            // Update password
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(adminFile))) {
-                writer.write("admin," + newPassword);
-                writer.newLine();
-            }
-
-            return true;
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-        }
+        return AdminManager.changePassword(currentPassword, newPassword);
     }
 
     private void showAlert(String title, String message) {

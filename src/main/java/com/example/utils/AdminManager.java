@@ -75,4 +75,48 @@ public class AdminManager {
             return DEFAULT_PASSWORD;
         }
     }
+
+    public static boolean changePassword(String currentPassword, String newPassword) {
+        try {
+            // Verify current password first
+            String storedPassword = getAdminPassword();
+            if (!currentPassword.equals(storedPassword)) {
+                return false;
+            }
+
+            // Create admin directory if it doesn't exist
+            java.io.File adminDir = new java.io.File("src/main/resources/data/admin");
+            if (!adminDir.exists()) {
+                adminDir.mkdirs();
+            }
+
+            java.io.File adminFile = new java.io.File(ADMIN_DATA_FILE);
+            String adminEmail = DEFAULT_EMAIL;
+
+            // Read current email if file exists
+            if (adminFile.exists()) {
+                try (BufferedReader reader = new BufferedReader(new FileReader(adminFile))) {
+                    String line = reader.readLine();
+                    if (line != null && !line.trim().isEmpty()) {
+                        String[] parts = line.split(",");
+                        if (parts.length >= 1) {
+                            adminEmail = parts[0];
+                        }
+                    }
+                }
+            }
+
+            // Write updated credentials
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(adminFile))) {
+                writer.write(adminEmail + "," + newPassword);
+                writer.newLine();
+            }
+
+            return true;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
