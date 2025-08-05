@@ -221,4 +221,60 @@ public class UserManager {
             return false;
         }
     }
+
+    /**
+     * Get all registered users
+     * 
+     * @return List of all users
+     */
+    public static List<User> getAllUsers() {
+        return loadUsersFromCSV();
+    }
+
+    /**
+     * Delete a user by email
+     * 
+     * @param email The email of the user to delete
+     * @return true if deletion successful, false otherwise
+     */
+    public static boolean deleteUser(String email) {
+        List<User> users = loadUsersFromCSV();
+        boolean removed = users.removeIf(user -> user.getEmail().equals(email));
+        if (removed) {
+            // Save updated user list
+            String userDataFile = DataManager.getUserDataFilePath().toString();
+            try (PrintWriter writer = new PrintWriter(new FileWriter(userDataFile))) {
+                // Write header
+                writer.println(USER_DATA_HEADER);
+
+                // Write users
+                for (User user : users) {
+                    writer.printf("%s,%s,%s,%s%n",
+                            user.getUsername(),
+                            user.getEmail(),
+                            user.getPasswordHash(),
+                            user.getCreatedAtString());
+                }
+
+                // Also delete the user's password file
+                User deletedUser = findUserByEmail(email);
+                if (deletedUser != null) {
+                    String passwordFilePath = DataManager.getUserPasswordFilePath(deletedUser.getUsername()).toString();
+                    try {
+                        Files.deleteIfExists(Path.of(passwordFilePath));
+                    } catch (IOException e) {
+                        System.err.println("Error deleting user password file: " + e.getMessage());
+                    }
+                }
+
+                System.out.println("User deleted: " + email);
+                return true;
+            } catch (IOException e) {
+                System.err.println("Error deleting user: " + e.getMessage());
+                return false;
+            }
+        }
+
+        return false;
+    }
 }

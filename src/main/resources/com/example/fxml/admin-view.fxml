@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="504.0" maxWidth="973.0" minHeight="504.0" minWidth="973.0" prefHeight="504.0" prefWidth="973.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.GuestController">
+<BorderPane maxHeight="504.0" maxWidth="973.0" minHeight="504.0" minWidth="973.0" prefHeight="504.0" prefWidth="973.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.AdminController">
    <left>
       <AnchorPane maxHeight="504.0" maxWidth="215.0" minHeight="504.0" minWidth="215.0" prefHeight="504.0" prefWidth="215.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
@@ -20,28 +20,36 @@
                   <Image url="@../images/guest-left-side-bg.png" />
                </image>
             </ImageView>
-            <VBox alignment="CENTER" layoutX="28.0" layoutY="41.0" spacing="32.0" AnchorPane.topAnchor="48.0">
+            <VBox alignment="CENTER" layoutX="14.0" layoutY="43.0" spacing="32.0" AnchorPane.topAnchor="43.0">
                <children>
                   <VBox alignment="CENTER" spacing="16.0">
                      <children>
                         <ImageView fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/guest-mode-icon.png" />
+                              <Image url="@../images/admin-icon.png" />
                            </image>
                         </ImageView>
                         <VBox alignment="CENTER">
                            <children>
-                              <Label styleClass="title-white" text="Welcome" />
-                              <Label alignment="CENTER" styleClass="subtitle-white" text="Guest Mode" textOverrun="CLIP" wrapText="true" />
+                              <Label prefHeight="90.0" prefWidth="182.0" styleClass="title-white" text="Admin Control Panel" textAlignment="CENTER" wrapText="true" />
                            </children>
                         </VBox>
                      </children>
                   </VBox>
-                  <Button fx:id="backToLoginButton" maxHeight="37.0" maxWidth="154.0" minHeight="37.0" minWidth="154.0" mnemonicParsing="false" onAction="#handleBackToLogin" prefHeight="37.0" prefWidth="154.0" styleClass="white-btn" text="Back to Login">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
+                  <VBox alignment="CENTER" spacing="8.0">
+                     <children>
+                        <Button fx:id="changePasswordButton" maxHeight="37.0" maxWidth="154.0" minHeight="37.0" minWidth="154.0" mnemonicParsing="false" onAction="#handleChangePassword" prefHeight="37.0" prefWidth="154.0" styleClass="white-btn" text="Change Password">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="logoutButton" maxHeight="37.0" maxWidth="154.0" minHeight="37.0" minWidth="154.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="37.0" prefWidth="154.0" styleClass="logout-btn" text="Log out">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </children>
@@ -50,10 +58,10 @@
    <right>
       <AnchorPane maxHeight="504.0" maxWidth="758.0" minHeight="504.0" minWidth="758.0" prefHeight="504.0" prefWidth="758.0" styleClass="right-pane" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" layoutX="197.0" layoutY="5.0" AnchorPane.topAnchor="16.0">
+            <VBox alignment="CENTER" layoutX="146.0" layoutY="17.0" AnchorPane.topAnchor="17.0">
                <children>
-                  <Label styleClass="title" text="DEMO VIEW" />
-                  <Label styleClass="subtitle" text="All your credentials stored securely in one place" textOverrun="CLIP" wrapText="true" />
+                  <Label styleClass="title" text="Admin Control Panel" />
+                  <Label styleClass="subtitle" text="You can view registered users and manage all user accounts." textOverrun="CLIP" wrapText="true" />
                </children>
             </VBox>
             <ImageView fx:id="closeButton" fitHeight="25.0" fitWidth="25.0" onMouseClicked="#handleCloseButton" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="4.0">
@@ -61,10 +69,10 @@
                   <Image url="@../images/close-button.png" />
                </image>
             </ImageView>
-            <TableView fx:id="passwordTable" layoutX="1.6" layoutY="95.0" minHeight="315.0" minWidth="754.0" prefHeight="315.0" prefWidth="754.0" stylesheets="@../css/table-styles.css" AnchorPane.leftAnchor="1.0">
+            <TableView fx:id="usersTable" layoutX="1.6" layoutY="95.0" minHeight="315.0" minWidth="754.0" prefHeight="315.0" prefWidth="754.0" stylesheets="@../css/table-styles.css" AnchorPane.leftAnchor="1.0">
               <columns>
-                <TableColumn fx:id="websiteColumn" editable="false" maxWidth="242.0" minWidth="-1.0" prefWidth="242.0" resizable="false" sortable="false" text="Website/App Name" />
-                <TableColumn fx:id="usernameColumn" editable="false" maxWidth="208.0" minWidth="-1.0" prefWidth="208.0" resizable="false" sortable="false" text="Username/Email" />
+                <TableColumn fx:id="nameColumn" editable="false" maxWidth="242.0" minWidth="-1.0" prefWidth="242.0" resizable="false" sortable="false" text="Name" />
+                <TableColumn fx:id="emailColumn" editable="false" maxWidth="208.0" minWidth="-1.0" prefWidth="208.0" resizable="false" sortable="false" text="Email" />
                   <TableColumn fx:id="passwordColumn" editable="false" maxWidth="152.0" minWidth="-1.0" prefWidth="152.0" resizable="false" sortable="false" text="Password" />
                   <TableColumn fx:id="actionsColumn" editable="false" maxWidth="150.0" minWidth="-1.0" prefWidth="150.0" resizable="false" sortable="false" text="Actions" />
               </columns>
