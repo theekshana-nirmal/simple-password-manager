@@ -12,7 +12,8 @@ import java.util.ResourceBundle;
 
 /**
  * Controller for viewing password details in a dialog.
- * OOP Concept: This class demonstrates ENCAPSULATION by hiding implementation details
+ * OOP Concept: This class demonstrates ENCAPSULATION by hiding implementation
+ * details
  * and providing a clean interface for viewing password data.
  */
 
@@ -39,7 +40,9 @@ public class ViewPasswordController implements Initializable {
 
     public void setStage(Stage stage) {
         this.stage = stage;
-    }    public void setPasswordEntry(UserController.PasswordEntry entry) {
+    }
+
+    public void setPasswordEntry(UserController.PasswordEntry entry) {
         if (entry != null) {
             websiteField.setText(entry.getWebsite());
             usernameField.setText(entry.getUsername());

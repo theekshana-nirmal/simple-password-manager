@@ -13,8 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This file contains the CSVHandler utility class for loading and saving passwords.
- * OOP Concept: This class demonstrates the DATA ACCESS OBJECT pattern for file I/O operations.
+ * This file contains the CSVHandler utility class for loading and saving
+ * passwords.
+ * OOP Concept: This class demonstrates the DATA ACCESS OBJECT pattern for file
+ * I/O operations.
  */
 
 public class CSVHandler {
@@ -154,7 +156,9 @@ public class CSVHandler {
             System.err.println("Error checking if CSV is empty: " + e.getMessage());
         }
         return true; // Consider empty if there's an error
-    }    /**
+    }
+
+    /**
      * Load password entries from user-specific CSV file
      * 
      * @param username The username to load passwords for
@@ -186,7 +190,7 @@ public class CSVHandler {
                                 data[0].trim(),
                                 data[1].trim(),
                                 data[2].trim());
-                                
+
                         // Handle encryption status during loading
                         if (EncryptionUtils.isEncrypted(data[2].trim())) {
                             // Already encrypted, set directly

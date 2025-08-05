@@ -60,13 +60,13 @@ public class GuestController implements Initializable {
     }
 
     // Configures the table columns and sets up the action buttons
-    private void setupTableColumns() {        // Set up data columns
+    private void setupTableColumns() { // Set up data columns
         websiteColumn.setCellValueFactory(new PropertyValueFactory<>("website"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        
+
         // Set up password column to show asterisks for the password
         passwordColumn.setCellValueFactory(cellData -> {
-            String maskedPassword = "••••••••";  // Fixed mask for demo mode
+            String maskedPassword = "••••••••"; // Fixed mask for demo mode
             return new javafx.beans.property.SimpleStringProperty(maskedPassword);
         });// Set up actions column with icons
         actionsColumn.setCellFactory(param -> new javafx.scene.control.TableCell<PasswordEntry, Void>() {
@@ -206,7 +206,8 @@ public class GuestController implements Initializable {
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(
                 javafx.scene.control.Alert.AlertType.INFORMATION);
         alert.setTitle("Password Details");
-        alert.setHeaderText("Viewing password for " + entry.getWebsite());        // Use the demo password from the getDecryptedPassword method
+        alert.setHeaderText("Viewing password for " + entry.getWebsite()); // Use the demo password from the
+                                                                           // getDecryptedPassword method
         String demoPassword = entry.getDecryptedPassword();
 
         javafx.scene.layout.GridPane grid = new javafx.scene.layout.GridPane();
@@ -326,9 +327,12 @@ public class GuestController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }    /**
+    }
+
+    /**
      * Simple data model class for guest mode password entries
-     * Note: In guest mode, we don't actually use encryption since these are demo entries only
+     * Note: In guest mode, we don't actually use encryption since these are demo
+     * entries only
      */
     public static class PasswordEntry {
         private String website;
@@ -364,7 +368,7 @@ public class GuestController implements Initializable {
         public void setPassword(String password) {
             this.password = password;
         }
-        
+
         /**
          * For compatibility with the main application's interface
          * In guest mode, this returns a demo password

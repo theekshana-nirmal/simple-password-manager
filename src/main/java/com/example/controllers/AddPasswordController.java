@@ -14,7 +14,8 @@ import java.util.ResourceBundle;
 
 /**
  * Controller for adding new password entries.
- * OOP Concept: This class demonstrates the CONTROLLER pattern in MVC architecture
+ * OOP Concept: This class demonstrates the CONTROLLER pattern in MVC
+ * architecture
  * and manages user input validation and processing.
  */
 
@@ -56,7 +57,9 @@ public class AddPasswordController implements Initializable {
     @FXML
     private void handleCloseButton() {
         closeWindow();
-    }    @FXML
+    }
+
+    @FXML
     private void handleSaveButton() {
         String website = websiteField.getText().trim();
         String username = usernameField.getText().trim();
@@ -80,11 +83,11 @@ public class AddPasswordController implements Initializable {
         showAlert("Success", "Password saved successfully!");
         closeWindow();
     }
-    
+
     private void showAlert(String title, String message) {
-        javafx.scene.control.Alert.AlertType alertType = title.equals("Error") ? 
-            javafx.scene.control.Alert.AlertType.ERROR : 
-            javafx.scene.control.Alert.AlertType.INFORMATION;
+        javafx.scene.control.Alert.AlertType alertType = title.equals("Error")
+                ? javafx.scene.control.Alert.AlertType.ERROR
+                : javafx.scene.control.Alert.AlertType.INFORMATION;
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);

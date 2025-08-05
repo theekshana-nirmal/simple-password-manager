@@ -22,19 +22,20 @@ public class PasswordEntry extends BasePasswordEntry {
         return getWebsite() != null && !getWebsite().trim().isEmpty() &&
                 getUsername() != null && !getUsername().trim().isEmpty() &&
                 getPassword() != null && !getPassword().trim().isEmpty();
-    }    // Creates a password entry from a CSV line format
+    } // Creates a password entry from a CSV line format
+
     public PasswordEntry(String csvLine) {
         super("", "", ""); // Call parent constructor with empty values first
-        
+
         // When loading from CSV, assume password might already be encrypted
         String website = parseWebsite(csvLine);
         String username = parseUsername(csvLine);
         String password = parsePassword(csvLine);
-        
+
         // Set the website and username
         setWebsite(website);
         setUsername(username);
-        
+
         // Check if the password is already encrypted
         if (com.example.utils.EncryptionUtils.isEncrypted(password)) {
             setPassword(password); // Already encrypted
@@ -67,7 +68,8 @@ public class PasswordEntry extends BasePasswordEntry {
         return EncryptionUtils.decryptPassword(getPassword());
     }
 
-    // Special constructor that takes pre-encrypted password (for loading from storage)
+    // Special constructor that takes pre-encrypted password (for loading from
+    // storage)
     public PasswordEntry(String website, String username, String encryptedPassword, boolean isAlreadyEncrypted) {
         super(website, username, encryptedPassword);
     }
