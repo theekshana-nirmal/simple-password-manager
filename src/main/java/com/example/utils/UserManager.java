@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class UserManager {
 
-    private static final String USER_DATA_HEADER = "Username,Email,PasswordHash,CreatedAt";
+    private static final String USER_DATA_HEADER = "Username,Email,PasswordHash";
     private static User currentUser = null;
 
     // Initialize data directories when class is loaded
@@ -139,14 +139,25 @@ public class UserManager {
                     if (line.trim().isEmpty()) {
                         continue;
                     }
-
                     String[] data = line.split(",");
-                    if (data.length >= 4) {
-                        users.add(new User(
-                                data[0].trim(),
-                                data[1].trim(),
-                                data[2].trim(),
-                                data[3].trim()));
+                    if (data.length >= 3) {
+                        // Handle cases where CreatedAt might be empty or missing
+                        String createdAtString = (data.length >= 4 && !data[3].trim().isEmpty()) ? data[3].trim() : "";
+                        if (createdAtString.isEmpty()) {
+                            // Use 3-parameter constructor for backward compatibility when CreatedAt is
+                            // empty
+                            users.add(new User(
+                                    data[0].trim(),
+                                    data[1].trim(),
+                                    data[2].trim()));
+                        } else {
+                            // Use 4-parameter constructor when CreatedAt is present
+                            users.add(new User(
+                                    data[0].trim(),
+                                    data[1].trim(),
+                                    data[2].trim(),
+                                    createdAtString));
+                        }
                     }
                 }
                 System.out.println("Loaded " + users.size() + " users from: " + userDataFile);
@@ -195,15 +206,12 @@ public class UserManager {
 
             try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(userDataFile))) {
                 // Write header
-                writer.println(USER_DATA_HEADER);
-
-                // Write users
+                writer.println(USER_DATA_HEADER); // Write users (only core fields)
                 for (User user : users) {
-                    writer.printf("%s,%s,%s,%s%n",
+                    writer.printf("%s,%s,%s%n",
                             user.getUsername(),
                             user.getEmail(),
-                            user.getPasswordHash(),
-                            user.getCreatedAtString());
+                            user.getPasswordHash());
                 }
             }
 
@@ -267,15 +275,12 @@ public class UserManager {
             String userDataFile = DataManager.getUserDataFilePath().toString();
             try (PrintWriter writer = new PrintWriter(new FileWriter(userDataFile))) {
                 // Write header
-                writer.println(USER_DATA_HEADER);
-
-                // Write remaining users
+                writer.println(USER_DATA_HEADER); // Write remaining users (only core fields)
                 for (User user : users) {
-                    writer.printf("%s,%s,%s,%s%n",
+                    writer.printf("%s,%s,%s%n",
                             user.getUsername(),
                             user.getEmail(),
-                            user.getPasswordHash(),
-                            user.getCreatedAtString());
+                            user.getPasswordHash());
                 }
 
                 System.out.println("User and all associated data deleted: " + email);
