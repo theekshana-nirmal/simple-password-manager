@@ -1,12 +1,16 @@
 package com.example.controllers;
 
 import com.example.App;
+import com.example.models.User;
+import com.example.utils.CSVHandler;
+import com.example.utils.UserManager;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,11 +18,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class UserController implements Initializable {
@@ -40,16 +43,34 @@ public class UserController implements Initializable {
 
     @FXML
     private TableColumn<PasswordEntry, Void> actionsColumn;
-
     @FXML
     private Button backToLoginButton;
+
+    @FXML
+    private Label welcomeUserLabel;
 
     private ObservableList<PasswordEntry> passwordData = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setupTableColumns();
-        loadSampleData();
+        setupWelcomeMessage();
+        loadUserData();
+    }
+
+    private void setupWelcomeMessage() {
+        User currentUser = UserManager.getCurrentUser();
+        if (currentUser != null) {
+            welcomeUserLabel.setText(currentUser.getUsername());
+        } else {
+            welcomeUserLabel.setText("Guest User");
+            // If no user is logged in, redirect to login
+            try {
+                App.setRoot("fxml/login");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void setupTableColumns() {
@@ -143,60 +164,58 @@ public class UserController implements Initializable {
         });
     }
 
-    private void loadSampleData() {
-        try {
-            InputStream inputStream = getClass().getResourceAsStream("/sample-passwords.csv");
-            if (inputStream != null) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                boolean firstLine = true;
+    private void loadUserData() {
+        User currentUser = UserManager.getCurrentUser();
+        if (currentUser != null) {
+            // Load passwords from user-specific CSV file
+            List<PasswordEntry> loadedPasswords = CSVHandler.loadUserPasswordsFromCSV(currentUser.getUsername());
 
-                while ((line = reader.readLine()) != null) {
-                    if (firstLine) {
-                        firstLine = false; // Skip header
-                        continue;
-                    }
+            // Clear existing data and add loaded data
+            passwordData.clear();
+            passwordData.addAll(loadedPasswords);
 
-                    String[] data = line.split(",");
-                    if (data.length >= 3) {
-                        passwordData.add(new PasswordEntry(
-                                data[0].trim(),
-                                data[1].trim(),
-                                "••••••••" // Mask the password for security in guest mode
-                        ));
-                    }
-                }
-                reader.close();
+            System.out.println(
+                    "Loaded " + passwordData.size() + " password entries for user: " + currentUser.getUsername());
+        } else {
+            // If no user is logged in, redirect to login
+            try {
+                App.setRoot("fxml/login");
+                return;
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            System.err.println("Could not load sample data: " + e.getMessage());
-            // Add fallback sample data
-            addFallbackData();
         }
 
+        // Always set the items, even if empty
         passwordTable.setItems(passwordData);
-    }
 
-    private void addFallbackData() {
-        passwordData.addAll(
-                new PasswordEntry("Facebook", "john.doe@email.com", "••••••••"),
-                new PasswordEntry("Gmail", "johndoe123", "••••••••"),
-                new PasswordEntry("GitHub", "john_developer", "••••••••"));
+        // Print status message
+        if (passwordData.isEmpty()) {
+            System.out.println("No password data loaded. Table will be empty.");
+        }
     }
 
     private void handleViewAction(PasswordEntry entry) {
         System.out.println("View action for: " + entry.getWebsite());
-        // In guest mode, just show a message or demo functionality
+        // Implement view functionality for user mode
     }
 
     private void handleEditAction(PasswordEntry entry) {
         System.out.println("Edit action for: " + entry.getWebsite());
-        // In guest mode, just show a message or demo functionality
+        // Implement edit functionality for user mode
     }
 
     private void handleDeleteAction(PasswordEntry entry) {
         System.out.println("Delete action for: " + entry.getWebsite());
-        // In guest mode, just show a message or demo functionality
+        // Remove from the table
+        passwordData.remove(entry);
+
+        // Save updated data back to user-specific CSV
+        User currentUser = UserManager.getCurrentUser();
+        if (currentUser != null) {
+            CSVHandler.saveUserPasswordsToCSV(currentUser.getUsername(), passwordData);
+            System.out.println("Entry deleted and user CSV updated.");
+        }
     }
 
     @FXML
@@ -207,9 +226,32 @@ public class UserController implements Initializable {
     @FXML
     private void handleBackToLogin() {
         try {
+            // Log out the current user
+            UserManager.logout();
             App.setRoot("fxml/login");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Refresh the password data from CSV file
+     */
+    public void refreshData() {
+        loadUserData();
+    }
+
+    /**
+     * Add a new password entry and save to CSV
+     */
+    public void addPasswordEntry(String website, String username, String password) {
+        PasswordEntry newEntry = new PasswordEntry(website, username, password);
+        passwordData.add(newEntry);
+
+        User currentUser = UserManager.getCurrentUser();
+        if (currentUser != null) {
+            CSVHandler.saveUserPasswordsToCSV(currentUser.getUsername(), passwordData);
+            System.out.println("New password entry added and saved to user CSV.");
         }
     }
 

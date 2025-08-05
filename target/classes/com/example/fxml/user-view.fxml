@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="504.0" maxWidth="973.0" minHeight="504.0" minWidth="973.0" prefHeight="504.0" prefWidth="973.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.GuestController">
+<BorderPane maxHeight="504.0" maxWidth="973.0" minHeight="504.0" minWidth="973.0" prefHeight="504.0" prefWidth="973.0" stylesheets="@../css/styles.css" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.UserController">
    <left>
       <AnchorPane maxHeight="504.0" maxWidth="215.0" minHeight="504.0" minWidth="215.0" prefHeight="504.0" prefWidth="215.0" styleClass="left-pane" BorderPane.alignment="CENTER">
          <children>
@@ -32,7 +32,7 @@
                         <VBox alignment="CENTER">
                            <children>
                               <Label styleClass="title-white" text="Welcome" />
-                              <Label alignment="CENTER" styleClass="subtitle-white" text="User Name" textOverrun="CLIP" wrapText="true" />
+                              <Label fx:id="welcomeUserLabel" alignment="CENTER" styleClass="subtitle-white" text="User Name" textOverrun="CLIP" wrapText="true" />
                            </children>
                         </VBox>
                      </children>
