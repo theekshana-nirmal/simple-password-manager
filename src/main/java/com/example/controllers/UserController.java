@@ -8,7 +8,10 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -17,6 +20,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,6 +51,9 @@ public class UserController implements Initializable {
     private TableColumn<PasswordEntry, Void> actionsColumn;
     @FXML
     private Button backToLoginButton;
+
+    @FXML
+    private Button addPasswordButton;
 
     @FXML
     private Label welcomeUserLabel;
@@ -232,6 +241,61 @@ public class UserController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void handleAddPassword() {
+        try {
+            // Load the add-password FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/add-password.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage for the popup
+            Stage addPasswordStage = new Stage();
+            addPasswordStage.initModality(Modality.APPLICATION_MODAL);
+            addPasswordStage.initStyle(StageStyle.TRANSPARENT);
+            addPasswordStage.setTitle("Add Password");
+
+            // Create scene and set it transparent
+            Scene scene = new Scene(root);
+            scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+
+            // Apply CSS stylesheets
+            scene.getStylesheets().add(getClass().getResource("/com/example/css/reset.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/example/css/styles.css").toExternalForm());
+
+            addPasswordStage.setScene(scene);
+
+            // Make the window draggable
+            makeDraggable(root, addPasswordStage);
+
+            // Get the controller and set up callback for saving
+            AddPasswordController controller = loader.getController();
+            controller.setParentController(this);
+            controller.setStage(addPasswordStage);
+
+            // Show the popup
+            addPasswordStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to make the popup draggable
+    private void makeDraggable(Parent root, Stage stage) {
+        final double[] xOffset = { 0 };
+        final double[] yOffset = { 0 };
+
+        root.setOnMousePressed(event -> {
+            xOffset[0] = event.getSceneX();
+            yOffset[0] = event.getSceneY();
+        });
+
+        root.setOnMouseDragged(event -> {
+            stage.setX(event.getScreenX() - xOffset[0]);
+            stage.setY(event.getScreenY() - yOffset[0]);
+        });
     }
 
     /**

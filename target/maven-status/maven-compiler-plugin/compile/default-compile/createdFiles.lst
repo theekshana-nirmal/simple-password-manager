@@ -4,6 +4,7 @@ com\example\controllers\RegisterController.class
 com\example\controllers\GuestController.class
 module-info.class
 com\example\App.class
+com\example\controllers\AddPasswordController.class
 com\example\utils\DataManager.class
 com\example\utils\UserManager.class
 com\example\controllers\GuestController$1.class
