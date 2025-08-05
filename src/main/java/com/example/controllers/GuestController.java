@@ -1,5 +1,10 @@
 package com.example.controllers;
 
+/**
+ * This file contains the GuestController class that manages the guest view of the password manager.
+ * OOP Concept: This class demonstrates ENCAPSULATION by handling all guest view functionality.
+ */
+
 import com.example.App;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -44,7 +49,9 @@ public class GuestController implements Initializable {
     @FXML
     private Button backToLoginButton;
 
-    private ObservableList<PasswordEntry> passwordData = FXCollections.observableArrayList();
+    private ObservableList<PasswordEntry> passwordData = FXCollections.observableArrayList(); // Initializes the
+                                                                                              // controller and sets up
+                                                                                              // the UI components
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -52,6 +59,7 @@ public class GuestController implements Initializable {
         loadSampleData();
     }
 
+    // Configures the table columns and sets up the action buttons
     private void setupTableColumns() {
         // Set up data columns
         websiteColumn.setCellValueFactory(new PropertyValueFactory<>("website"));
@@ -143,6 +151,7 @@ public class GuestController implements Initializable {
         });
     }
 
+    // Loads sample password data for demonstration purposes
     private void loadSampleData() {
         try {
             InputStream inputStream = getClass().getResourceAsStream("/sample-passwords.csv");
@@ -177,43 +186,146 @@ public class GuestController implements Initializable {
         passwordTable.setItems(passwordData);
     }
 
+    // Adds default password entries if sample data couldn't be loaded
     private void addFallbackData() {
         passwordData.addAll(
                 new PasswordEntry("Facebook", "john.doe@email.com", "••••••••"),
                 new PasswordEntry("Gmail", "johndoe123", "••••••••"),
                 new PasswordEntry("GitHub", "john_developer", "••••••••"));
-    }
+    } // Handles the view button click to show password details
 
     private void handleViewAction(PasswordEntry entry) {
-        System.out.println("View action for: " + entry.getWebsite());
-        // In guest mode, just show a message or demo functionality
+        if (entry == null)
+            return;
+
+        // Create a simple dialog to show password details
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(
+                javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Password Details");
+        alert.setHeaderText("Viewing password for " + entry.getWebsite());
+
+        // In guest mode, we show a demo password instead of actual password
+        String demoPassword = "DemoPassword123!";
+
+        javafx.scene.layout.GridPane grid = new javafx.scene.layout.GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new javafx.geometry.Insets(20, 150, 10, 10));
+
+        // Add password info to grid
+        grid.add(new javafx.scene.control.Label("Website:"), 0, 0);
+        grid.add(new javafx.scene.control.Label(entry.getWebsite()), 1, 0);
+        grid.add(new javafx.scene.control.Label("Username:"), 0, 1);
+        grid.add(new javafx.scene.control.Label(entry.getUsername()), 1, 1);
+        grid.add(new javafx.scene.control.Label("Password:"), 0, 2);
+        grid.add(new javafx.scene.control.Label(demoPassword), 1, 2);
+
+        // Add note about guest mode
+        javafx.scene.control.Label guestNote = new javafx.scene.control.Label(
+                "Note: This is demo mode. Create an account to manage real passwords.");
+        guestNote.setWrapText(true);
+        guestNote.setStyle("-fx-font-style: italic; -fx-text-fill: #555;");
+        grid.add(guestNote, 0, 3, 2, 1);
+
+        alert.getDialogPane().setContent(grid);
+        alert.showAndWait();
     }
 
+    // Handles the edit button click to demonstrate editing functionality
     private void handleEditAction(PasswordEntry entry) {
-        System.out.println("Edit action for: " + entry.getWebsite());
-        // In guest mode, just show a message or demo functionality
+        if (entry == null)
+            return;
+
+        // Create a simple dialog to simulate editing
+        javafx.scene.control.Dialog<PasswordEntry> dialog = new javafx.scene.control.Dialog<>();
+        dialog.setTitle("Edit Password");
+        dialog.setHeaderText("Edit password for " + entry.getWebsite());
+
+        // Set the button types
+        javafx.scene.control.ButtonType saveButtonType = new javafx.scene.control.ButtonType("Save",
+                javafx.scene.control.ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, javafx.scene.control.ButtonType.CANCEL);
+
+        // Create the form fields
+        javafx.scene.layout.GridPane grid = new javafx.scene.layout.GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new javafx.geometry.Insets(20, 150, 10, 10));
+
+        javafx.scene.control.TextField website = new javafx.scene.control.TextField(entry.getWebsite());
+        javafx.scene.control.TextField username = new javafx.scene.control.TextField(entry.getUsername());
+        javafx.scene.control.TextField password = new javafx.scene.control.TextField("DemoPassword123!");
+
+        grid.add(new javafx.scene.control.Label("Website:"), 0, 0);
+        grid.add(website, 1, 0);
+        grid.add(new javafx.scene.control.Label("Username:"), 0, 1);
+        grid.add(username, 1, 1);
+        grid.add(new javafx.scene.control.Label("Password:"), 0, 2);
+        grid.add(password, 1, 2);
+
+        // Add note about guest mode
+        javafx.scene.control.Label guestNote = new javafx.scene.control.Label(
+                "Note: This is demo mode. Changes won't be saved. Create an account to manage real passwords.");
+        guestNote.setWrapText(true);
+        guestNote.setStyle("-fx-font-style: italic; -fx-text-fill: #555;");
+        grid.add(guestNote, 0, 3, 2, 1);
+
+        dialog.getDialogPane().setContent(grid);
+
+        // Show the dialog and handle the result
+        dialog.showAndWait();
+
+        // Show feedback that this is just a demo
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(
+                javafx.scene.control.Alert.AlertType.INFORMATION);
+        alert.setTitle("Guest Mode");
+        alert.setHeaderText("Demo Only");
+        alert.setContentText("In guest mode, changes aren't saved. Create an account to manage real passwords.");
+        alert.showAndWait();
     }
 
+    // Handles the delete button click to demonstrate deletion functionality
     private void handleDeleteAction(PasswordEntry entry) {
-        System.out.println("Delete action for: " + entry.getWebsite());
-        // In guest mode, just show a message or demo functionality
+        if (entry == null)
+            return;
+
+        // Show confirmation dialog
+        javafx.scene.control.Alert confirmDialog = new javafx.scene.control.Alert(
+                javafx.scene.control.Alert.AlertType.CONFIRMATION);
+        confirmDialog.setTitle("Delete Password");
+        confirmDialog.setHeaderText("Confirm Delete");
+        confirmDialog.setContentText("Are you sure you want to delete the password for " + entry.getWebsite() + "?");
+
+        java.util.Optional<javafx.scene.control.ButtonType> result = confirmDialog.showAndWait();
+
+        if (result.isPresent() && result.get() == javafx.scene.control.ButtonType.OK) {
+            // Show feedback that this is just a demo
+            javafx.scene.control.Alert alert = new javafx.scene.control.Alert(
+                    javafx.scene.control.Alert.AlertType.INFORMATION);
+            alert.setTitle("Guest Mode");
+            alert.setHeaderText("Demo Only");
+            alert.setContentText(
+                    "In guest mode, passwords cannot be deleted. Create an account to manage real passwords.");
+            alert.showAndWait();
+        }
     }
 
     @FXML
+    // Exits the application when the close button is clicked
     private void handleCloseButton() {
         Platform.exit();
     }
 
     @FXML
+    // Returns to the login screen
     private void handleBackToLogin() {
         try {
             App.setRoot("fxml/login");
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    } // Simple data model class for guest mode password entries
 
-    // Data model class
     public static class PasswordEntry {
         private String website;
         private String username;
