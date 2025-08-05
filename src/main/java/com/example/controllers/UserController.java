@@ -210,8 +210,60 @@ public class UserController implements Initializable {
     }
 
     private void handleEditAction(PasswordEntry entry) {
-        System.out.println("Edit action for: " + entry.getWebsite());
-        // Implement edit functionality for user mode
+        if (entry == null) {
+            System.out.println("No entry selected for editing");
+            return;
+        }
+
+        try {
+            // Load the change-saved-data FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/change-saved-data.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage for the popup
+            Stage editStage = new Stage();
+            editStage.initModality(Modality.APPLICATION_MODAL);
+            editStage.initStyle(StageStyle.TRANSPARENT);
+            editStage.setTitle("Edit Password Entry");
+
+            // Create scene and set it transparent
+            Scene scene = new Scene(root);
+            scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+
+            // Apply CSS stylesheets
+            scene.getStylesheets().add(getClass().getResource("/com/example/css/reset.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/example/css/styles.css").toExternalForm());
+
+            editStage.setScene(scene);
+
+            // Make the window draggable
+            makeDraggable(root, editStage);
+
+            // Get the controller and set up the data
+            ChangeSavedDataController controller = loader.getController();
+            controller.setStage(editStage);
+            controller.setPasswordEntry(entry);
+
+            // Set up callback to save data when the dialog is closed
+            controller.setOnSaveCallback(() -> {
+                // Save updated data back to user-specific CSV
+                User currentUser = UserManager.getCurrentUser();
+                if (currentUser != null) {
+                    CSVHandler.saveUserPasswordsToCSV(currentUser.getUsername(), passwordData);
+                    System.out.println("Password entry updated and saved to CSV.");
+
+                    // Refresh the table to show updated data
+                    passwordTable.refresh();
+                }
+            });
+
+            // Show the popup
+            editStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error loading edit dialog: " + e.getMessage());
+        }
     }
 
     private void handleDeleteAction(PasswordEntry entry) {
