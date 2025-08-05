@@ -61,6 +61,9 @@ crashlytics-build.properties
 
 # Created by .ignore support plugin (hsz.mobi)
 
+# Maven build directory
+/target/
+
 # Password Manager User Data - Do not track sensitive user information
 src/main/resources/data/
 *.csv
