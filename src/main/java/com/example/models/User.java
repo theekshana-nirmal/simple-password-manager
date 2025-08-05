@@ -6,7 +6,6 @@ package com.example.models;
  * Contains only the core functionality needed for the password manager.
  */
 public class User extends BaseUser {
-
     /**
      * Constructor for creating a new user
      */
@@ -15,22 +14,25 @@ public class User extends BaseUser {
     }
 
     /**
-     * Constructor for loading existing user from storage
+     * Constructor for loading existing user from storage (backward compatibility)
      */
     public User(String username, String email, String passwordHash, String createdAtString) {
-        super(username, email, passwordHash, createdAtString);
+        super(username, email, passwordHash);
+        // We ignore the createdAtString since we removed that field for simplification
+    }
+
+    /**
+     * Get created at string for backward compatibility
+     */
+    public String getCreatedAtString() {
+        return ""; // Return empty string since we removed the createdAt field
     }
 
     // Implement abstract methods from BaseUser
 
     @Override
     public String getUserType() {
-        // Determine type based on username/email patterns
-        if (getUsername().toLowerCase().contains("admin") ||
-                getEmail().toLowerCase().contains("admin")) {
-            return "Admin";
-        }
-        return "Normal";
+        return "Normal"; // All created users are normal users
     }
 
     @Override
@@ -39,22 +41,12 @@ public class User extends BaseUser {
     }
 
     @Override
-    public boolean hasAdminPrivileges() {
-        return getUserType().equals("Admin");
-    }
-
-    @Override
-    public int getMaxPasswordCount() {
-        return hasAdminPrivileges() ? -1 : 100; // Unlimited for admin, 100 for normal users
-    }
-
-    @Override
     public void performLoginActions() {
-        System.out.println("User logged in: " + getUsername() + " (Type: " + getUserType() + ")");
+        System.out.println("User logged in: " + getUsername());
     }
 
     @Override
     public void performLogoutActions() {
-        System.out.println("User logged out: " + getUsername() + " (Type: " + getUserType() + ")");
+        System.out.println("User logged out: " + getUsername());
     }
 }
