@@ -22,5 +22,6 @@ com\example\App.class
 com\example\controllers\ChangePasswordController.class
 com\example\utils\UserManager.class
 com\example\models\User.class
+com\example\utils\EncryptionUtils.class
 com\example\controllers\AdminController$1.class
 com\example\controllers\UserController.class

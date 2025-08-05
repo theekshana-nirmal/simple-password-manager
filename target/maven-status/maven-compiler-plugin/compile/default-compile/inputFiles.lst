@@ -8,6 +8,7 @@ E:\Projects\code-projects\simple-password-manager\src\main\java\com\example\cont
 E:\Projects\code-projects\simple-password-manager\src\main\java\com\example\utils\DataManager.java
 E:\Projects\code-projects\simple-password-manager\src\main\java\com\example\utils\UserManager.java
 E:\Projects\code-projects\simple-password-manager\src\main\java\com\example\controllers\AdminController.java
+E:\Projects\code-projects\simple-password-manager\src\main\java\com\example\utils\EncryptionUtils.java
 E:\Projects\code-projects\simple-password-manager\src\main\java\com\example\controllers\AdminLoginController.java
 E:\Projects\code-projects\simple-password-manager\src\main\java\com\example\controllers\LoginController.java
 E:\Projects\code-projects\simple-password-manager\src\main\java\com\example\models\BaseUser.java

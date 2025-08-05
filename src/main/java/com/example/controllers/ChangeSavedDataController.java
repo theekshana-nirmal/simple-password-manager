@@ -13,6 +13,12 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for editing password entries.
+ * OOP Concept: This class demonstrates the CONTROLLER pattern in MVC architecture
+ * by handling user input and updating the model.
+ */
+
 public class ChangeSavedDataController implements Initializable {
 
     @FXML
@@ -44,15 +50,13 @@ public class ChangeSavedDataController implements Initializable {
 
     public void setStage(Stage stage) {
         this.stage = stage;
-    }
-
-    public void setPasswordEntry(UserController.PasswordEntry entry) {
+    }    public void setPasswordEntry(UserController.PasswordEntry entry) {
         this.passwordEntry = entry;
         // Pre-fill the form with existing data
         if (entry != null) {
             websiteField.setText(entry.getWebsite());
             usernameField.setText(entry.getUsername());
-            passwordField.setText(entry.getPassword());
+            passwordField.setText(entry.getDecryptedPassword()); // Use decrypted password for editing
         }
     }
 
