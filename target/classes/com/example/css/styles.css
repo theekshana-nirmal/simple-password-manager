@@ -129,6 +129,30 @@
     -fx-cursor: hand;
 }
 
+.logout-btn {
+    background-color: #FFFFFF;
+    -fx-background-color: #FFFFFF;
+    color: #FF4D4D;
+    -fx-text-fill: #FF4D4D;
+    border-color: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+    border-width: 1px;
+    -fx-border-width: 1px;
+}
+
+.logout-btn:hover {
+    background-color: #8023D7;
+    -fx-background-color: #8023D7;
+    color: #fff;
+    -fx-text-fill: #fff;
+    border-color: #FFFFFF;
+    -fx-border-color: #FFFFFF;
+    border-width: 1px;
+    -fx-border-width: 1px;
+    cursor: pointer;
+    -fx-cursor: hand;
+}
+
 .cancel {
     background-color: #fff;
     -fx-background-color: #fff;
