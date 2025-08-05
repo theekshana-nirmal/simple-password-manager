@@ -10,8 +10,10 @@ com\example\controllers\LoginController.class
 com\example\controllers\UserController$1.class
 com\example\controllers\GuestController$PasswordEntry.class
 com\example\utils\AdminManager.class
+com\example\controllers\ChangeSavedDataController.class
 com\example\utils\PasswordUtils.class
 com\example\controllers\AdminLoginController.class
+com\example\controllers\ViewPasswordController.class
 module-info.class
 com\example\App.class
 com\example\controllers\ChangePasswordController.class

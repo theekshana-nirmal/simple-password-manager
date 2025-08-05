@@ -80,13 +80,17 @@ public class UserController implements Initializable {
                 e.printStackTrace();
             }
         }
-    }
-
-    private void setupTableColumns() {
+    }    private void setupTableColumns() {
         // Set up data columns
         websiteColumn.setCellValueFactory(new PropertyValueFactory<>("website"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        passwordColumn.setCellValueFactory(new PropertyValueFactory<>("password")); // Set up actions column with icons
+        
+        // Set up password column to show asterisks
+        passwordColumn.setCellValueFactory(cellData -> {
+            String password = cellData.getValue().getPassword();
+            String maskedPassword = "*".repeat(password != null ? password.length() : 6);
+            return new javafx.beans.property.SimpleStringProperty(maskedPassword);
+        });// Set up actions column with icons
         actionsColumn.setCellFactory(param -> new javafx.scene.control.TableCell<PasswordEntry, Void>() {
             private final Button viewButton = new Button("👁");
             private final Button editButton = new Button("✏");
@@ -202,16 +206,105 @@ public class UserController implements Initializable {
         if (passwordData.isEmpty()) {
             System.out.println("No password data loaded. Table will be empty.");
         }
-    }
+    }    private void handleViewAction(PasswordEntry entry) {
+        if (entry == null) {
+            System.out.println("No entry selected for viewing");
+            return;
+        }
 
-    private void handleViewAction(PasswordEntry entry) {
-        System.out.println("View action for: " + entry.getWebsite());
-        // Implement view functionality for user mode
+        try {
+            // Load the view-password FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/view-password.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage for the popup
+            Stage viewStage = new Stage();
+            viewStage.initModality(Modality.APPLICATION_MODAL);
+            viewStage.initStyle(StageStyle.TRANSPARENT);
+            viewStage.setTitle("View Password");
+
+            // Create scene and set it transparent
+            Scene scene = new Scene(root);
+            scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+
+            // Apply CSS stylesheets
+            scene.getStylesheets().add(getClass().getResource("/com/example/css/reset.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/example/css/styles.css").toExternalForm());
+
+            viewStage.setScene(scene);
+
+            // Make the window draggable
+            makeDraggable(root, viewStage);
+
+            // Get the controller and set up the data
+            ViewPasswordController controller = loader.getController();
+            controller.setStage(viewStage);
+            controller.setPasswordEntry(entry);
+
+            // Show the popup
+            viewStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error loading view dialog: " + e.getMessage());
+        }
     }
 
     private void handleEditAction(PasswordEntry entry) {
-        System.out.println("Edit action for: " + entry.getWebsite());
-        // Implement edit functionality for user mode
+        if (entry == null) {
+            System.out.println("No entry selected for editing");
+            return;
+        }
+
+        try {
+            // Load the change-saved-data FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/change-saved-data.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage for the popup
+            Stage editStage = new Stage();
+            editStage.initModality(Modality.APPLICATION_MODAL);
+            editStage.initStyle(StageStyle.TRANSPARENT);
+            editStage.setTitle("Edit Password Entry");
+
+            // Create scene and set it transparent
+            Scene scene = new Scene(root);
+            scene.setFill(javafx.scene.paint.Color.TRANSPARENT);
+
+            // Apply CSS stylesheets
+            scene.getStylesheets().add(getClass().getResource("/com/example/css/reset.css").toExternalForm());
+            scene.getStylesheets().add(getClass().getResource("/com/example/css/styles.css").toExternalForm());
+
+            editStage.setScene(scene);
+
+            // Make the window draggable
+            makeDraggable(root, editStage);
+
+            // Get the controller and set up the data
+            ChangeSavedDataController controller = loader.getController();
+            controller.setStage(editStage);
+            controller.setPasswordEntry(entry);
+
+            // Set up callback to save data when the dialog is closed
+            controller.setOnSaveCallback(() -> {
+                // Save updated data back to user-specific CSV
+                User currentUser = UserManager.getCurrentUser();
+                if (currentUser != null) {
+                    CSVHandler.saveUserPasswordsToCSV(currentUser.getUsername(), passwordData);
+                    System.out.println("Password entry updated and saved to CSV.");
+
+                    // Refresh the table to show updated data
+                    passwordTable.refresh();
+                }
+            });
+
+            // Show the popup
+            editStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error loading edit dialog: " + e.getMessage());
+        }
     }
 
     private void handleDeleteAction(PasswordEntry entry) {
