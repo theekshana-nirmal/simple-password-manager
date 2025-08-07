@@ -12,6 +12,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This file contains the CSVHandler utility class for loading and saving
+ * passwords.
+ * OOP Concept: This class demonstrates the DATA ACCESS OBJECT pattern for file
+ * I/O operations.
+ */
+
 public class CSVHandler {
 
     private static final String CSV_HEADER = "Website/App Name,Username/Email,Password";
@@ -179,10 +186,17 @@ public class CSVHandler {
 
                     String[] data = line.split(",");
                     if (data.length >= 3 && !data[0].trim().isEmpty()) {
-                        passwords.add(new PasswordEntry(
+                        PasswordEntry entry = new PasswordEntry(
                                 data[0].trim(),
                                 data[1].trim(),
-                                data[2].trim()));
+                                data[2].trim());
+
+                        // Handle encryption status during loading
+                        if (EncryptionUtils.isEncrypted(data[2].trim())) {
+                            // Already encrypted, set directly
+                            entry.setEncryptedPassword(data[2].trim());
+                        }
+                        passwords.add(entry);
                     }
                 }
                 System.out.println("Loaded " + passwords.size() + " password entries for user: " + username);

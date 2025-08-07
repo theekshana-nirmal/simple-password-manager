@@ -12,6 +12,13 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for adding new password entries.
+ * OOP Concept: This class demonstrates the CONTROLLER pattern in MVC
+ * architecture
+ * and manages user input validation and processing.
+ */
+
 public class AddPasswordController implements Initializable {
 
     @FXML
@@ -59,7 +66,12 @@ public class AddPasswordController implements Initializable {
         String password = passwordField.getText();
 
         if (website.isEmpty() || username.isEmpty() || password.isEmpty()) {
-            // TODO: Show validation error
+            showAlert("Error", "All fields are required!");
+            return;
+        }
+
+        if (password.length() < 3) {
+            showAlert("Error", "Password must be at least 3 characters long!");
             return;
         }
 
@@ -68,7 +80,19 @@ public class AddPasswordController implements Initializable {
             parentController.addPasswordEntry(website, username, password);
         }
 
+        showAlert("Success", "Password saved successfully!");
         closeWindow();
+    }
+
+    private void showAlert(String title, String message) {
+        javafx.scene.control.Alert.AlertType alertType = title.equals("Error")
+                ? javafx.scene.control.Alert.AlertType.ERROR
+                : javafx.scene.control.Alert.AlertType.INFORMATION;
+        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML

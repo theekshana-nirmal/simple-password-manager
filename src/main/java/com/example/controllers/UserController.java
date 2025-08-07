@@ -30,6 +30,11 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the user view that displays and manages user's stored
+ * passwords.
+ * OOP Concept: This class demonstrates CONTROLLER pattern in MVC architecture.
+ */
 public class UserController implements Initializable {
 
     @FXML
@@ -80,14 +85,15 @@ public class UserController implements Initializable {
                 e.printStackTrace();
             }
         }
-    }    private void setupTableColumns() {
+    }
+
+    private void setupTableColumns() {
         // Set up data columns
         websiteColumn.setCellValueFactory(new PropertyValueFactory<>("website"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        
-        // Set up password column to show asterisks
+        // Set up password column to show asterisks for the decrypted password
         passwordColumn.setCellValueFactory(cellData -> {
-            String password = cellData.getValue().getPassword();
+            String password = cellData.getValue().getDecryptedPassword();
             String maskedPassword = "*".repeat(password != null ? password.length() : 6);
             return new javafx.beans.property.SimpleStringProperty(maskedPassword);
         });// Set up actions column with icons
@@ -206,7 +212,9 @@ public class UserController implements Initializable {
         if (passwordData.isEmpty()) {
             System.out.println("No password data loaded. Table will be empty.");
         }
-    }    private void handleViewAction(PasswordEntry entry) {
+    }
+
+    private void handleViewAction(PasswordEntry entry) {
         if (entry == null) {
             System.out.println("No entry selected for viewing");
             return;
@@ -410,9 +418,8 @@ public class UserController implements Initializable {
             CSVHandler.saveUserPasswordsToCSV(currentUser.getUsername(), passwordData);
             System.out.println("New password entry added and saved to user CSV.");
         }
-    }
+    } // Data model class
 
-    // Data model class
     public static class PasswordEntry {
         private String website;
         private String username;
@@ -421,7 +428,8 @@ public class UserController implements Initializable {
         public PasswordEntry(String website, String username, String password) {
             this.website = website;
             this.username = username;
-            this.password = password;
+            // Store encrypted password
+            this.password = com.example.utils.EncryptionUtils.encryptPassword(password);
         }
 
         public String getWebsite() {
@@ -445,7 +453,19 @@ public class UserController implements Initializable {
         }
 
         public void setPassword(String password) {
-            this.password = password;
+            // Store encrypted password when setting directly
+            this.password = com.example.utils.EncryptionUtils.encryptPassword(password);
+        }
+
+        public String getDecryptedPassword() {
+            return com.example.utils.EncryptionUtils.decryptPassword(password);
+        }
+
+        /**
+         * Sets already encrypted password (for loading from storage)
+         */
+        public void setEncryptedPassword(String encryptedPassword) {
+            this.password = encryptedPassword;
         }
     }
 }

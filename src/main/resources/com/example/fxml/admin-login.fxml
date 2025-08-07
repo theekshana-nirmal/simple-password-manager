@@ -48,11 +48,11 @@
                            <children>
                               <HBox spacing="2.0">
                                  <children>
-                                    <Label prefHeight="15.0" text="Admin Email" />
+                                    <Label prefHeight="15.0" text="Admin Account" />
                                     <Label prefHeight="15.0" text="*" textFill="#ff5454" />
                                  </children>
                               </HBox>
-                              <TextField fx:id="emailField" promptText="Enter admin email" />
+                              <TextField fx:id="emailField" promptText="Enter admin user name" text="admin" />
                            </children>
                         </VBox>
                         <VBox spacing="8.0">

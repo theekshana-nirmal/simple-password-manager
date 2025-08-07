@@ -9,26 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Utility class for managing user data and authentication
+ * This file contains the UserManager utility class that handles user
+ * authentication and data management.
+ * OOP Concept: This class demonstrates UTILITY PATTERN by providing static
+ * methods for user operations.
  */
 public class UserManager {
 
-    private static final String USER_DATA_HEADER = "Username,Email,PasswordHash,CreatedAt";
+    private static final String USER_DATA_HEADER = "Username,Email,PasswordHash";
     private static User currentUser = null;
 
     // Initialize data directories when class is loaded
     static {
         DataManager.initializeDataDirectories();
-    }
+    } // Creates a new user account in the system
 
-    /**
-     * Register a new user
-     * 
-     * @param username The username
-     * @param email    The email
-     * @param password The plain text password
-     * @return true if registration successful, false if user already exists
-     */
     public static boolean registerUser(String username, String email, String password) {
         // Check if user already exists
         if (findUserByUsername(username) != null || findUserByEmail(email) != null) {
@@ -41,15 +36,8 @@ public class UserManager {
 
         // Save to CSV
         return saveUserToCSV(newUser);
-    }
+    } // Verifies user credentials and logs them in
 
-    /**
-     * Authenticate a user
-     * 
-     * @param usernameOrEmail Username or email
-     * @param password        Plain text password
-     * @return true if authentication successful
-     */
     public static boolean authenticateUser(String usernameOrEmail, String password) {
         User user = findUserByUsername(usernameOrEmail);
         if (user == null) {
@@ -62,66 +50,36 @@ public class UserManager {
         }
 
         return false;
-    }
+    } // Returns the currently logged-in user
 
-    /**
-     * Get the currently logged-in user
-     * 
-     * @return Current user or null if not logged in
-     */
     public static User getCurrentUser() {
         return currentUser;
-    }
+    } // Logs out the current user by clearing the reference
 
-    /**
-     * Log out the current user
-     */
     public static void logout() {
         currentUser = null;
-    }
+    } // Checks if a user is currently logged into the system
 
-    /**
-     * Check if a user is currently logged in
-     * 
-     * @return true if user is logged in
-     */
     public static boolean isUserLoggedIn() {
         return currentUser != null;
-    }
+    } // Searches for and returns a user by their username
 
-    /**
-     * Find user by username
-     * 
-     * @param username The username to search for
-     * @return User object or null if not found
-     */
     public static User findUserByUsername(String username) {
         List<User> users = loadUsersFromCSV();
         return users.stream()
                 .filter(user -> user.getUsername().equalsIgnoreCase(username))
                 .findFirst()
                 .orElse(null);
-    }
+    } // Searches for and returns a user by their email address
 
-    /**
-     * Find user by email
-     * 
-     * @param email The email to search for
-     * @return User object or null if not found
-     */
     public static User findUserByEmail(String email) {
         List<User> users = loadUsersFromCSV();
         return users.stream()
                 .filter(user -> user.getEmail().equalsIgnoreCase(email))
                 .findFirst()
                 .orElse(null);
-    }
+    } // Loads all user records from the CSV file
 
-    /**
-     * Load all users from CSV file
-     * 
-     * @return List of User objects
-     */
     private static List<User> loadUsersFromCSV() {
         List<User> users = new ArrayList<>();
         try {
@@ -139,17 +97,16 @@ public class UserManager {
                     if (line.trim().isEmpty()) {
                         continue;
                     }
-
                     String[] data = line.split(",");
-                    if (data.length >= 4) {
+                    if (data.length >= 3) {
+                        // Only use the 3-parameter constructor - we no longer track creation date
                         users.add(new User(
                                 data[0].trim(),
                                 data[1].trim(),
-                                data[2].trim(),
-                                data[3].trim()));
+                                data[2].trim()));
                     }
                 }
-                System.out.println("Loaded " + users.size() + " users from: " + userDataFile);
+                System.out.println("Loaded " + users.size() + " users");
             } else {
                 System.out.println("User data file does not exist, starting with empty user list");
             }
@@ -158,14 +115,8 @@ public class UserManager {
         }
 
         return users;
-    }
+    } // Adds a new user to the CSV storage
 
-    /**
-     * Save a user to CSV file
-     * 
-     * @param user The user to save
-     * @return true if successful
-     */
     private static boolean saveUserToCSV(User user) {
         try {
             // First, load existing users
@@ -178,14 +129,8 @@ public class UserManager {
             System.err.println("Error saving user to CSV: " + e.getMessage());
             return false;
         }
-    }
+    } // Saves all users to the CSV file
 
-    /**
-     * Save all users to CSV file
-     * 
-     * @param users List of users to save
-     * @return true if successful
-     */
     private static boolean saveAllUsersToCSV(List<User> users) {
         try {
             Path userDataFile = DataManager.getUserDataFilePath();
@@ -195,15 +140,12 @@ public class UserManager {
 
             try (PrintWriter writer = new PrintWriter(Files.newBufferedWriter(userDataFile))) {
                 // Write header
-                writer.println(USER_DATA_HEADER);
-
-                // Write users
+                writer.println(USER_DATA_HEADER); // Write users (only core fields)
                 for (User user : users) {
-                    writer.printf("%s,%s,%s,%s%n",
+                    writer.printf("%s,%s,%s%n",
                             user.getUsername(),
                             user.getEmail(),
-                            user.getPasswordHash(),
-                            user.getCreatedAtString());
+                            user.getPasswordHash());
                 }
             }
 
@@ -220,23 +162,12 @@ public class UserManager {
             System.err.println("Error saving users to CSV: " + e.getMessage());
             return false;
         }
-    }
+    } // Returns a list of all registered users
 
-    /**
-     * Get all registered users
-     * 
-     * @return List of all users
-     */
     public static List<User> getAllUsers() {
         return loadUsersFromCSV();
-    }
+    } // Removes a user from the system by their email
 
-    /**
-     * Delete a user by email
-     * 
-     * @param email The email of the user to delete
-     * @return true if deletion successful, false otherwise
-     */
     public static boolean deleteUser(String email) {
         List<User> users = loadUsersFromCSV();
 
@@ -267,15 +198,12 @@ public class UserManager {
             String userDataFile = DataManager.getUserDataFilePath().toString();
             try (PrintWriter writer = new PrintWriter(new FileWriter(userDataFile))) {
                 // Write header
-                writer.println(USER_DATA_HEADER);
-
-                // Write remaining users
+                writer.println(USER_DATA_HEADER); // Write remaining users (only core fields)
                 for (User user : users) {
-                    writer.printf("%s,%s,%s,%s%n",
+                    writer.printf("%s,%s,%s%n",
                             user.getUsername(),
                             user.getEmail(),
-                            user.getPasswordHash(),
-                            user.getCreatedAtString());
+                            user.getPasswordHash());
                 }
 
                 System.out.println("User and all associated data deleted: " + email);
