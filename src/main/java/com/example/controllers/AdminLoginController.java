@@ -69,15 +69,6 @@ public class AdminLoginController {
         }
     }
 
-    @FXML
-    private void handleBackToWelcome() {
-        try {
-            App.setRoot("fxml/welcome");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

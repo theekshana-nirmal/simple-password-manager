@@ -85,15 +85,6 @@ public class LoginController {
         }
     }
 
-    @FXML
-    private void handleBackClick() {
-        try {
-            App.setRoot("fxml/welcome");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
