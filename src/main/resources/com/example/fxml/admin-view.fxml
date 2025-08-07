@@ -35,10 +35,9 @@
                            </children>
                         </VBox>
                      </children>
-                  </VBox>
-                  <VBox alignment="CENTER" spacing="8.0">
+                  </VBox>                  <VBox alignment="CENTER" spacing="8.0">
                      <children>
-                        <Button fx:id="changePasswordButton" maxHeight="37.0" maxWidth="154.0" minHeight="37.0" minWidth="154.0" mnemonicParsing="false" onAction="#handleChangePassword" prefHeight="37.0" prefWidth="154.0" styleClass="white-btn" text="Change Password">
+                        <Button fx:id="manageProfileButton" maxHeight="37.0" maxWidth="154.0" minHeight="37.0" minWidth="154.0" mnemonicParsing="false" onAction="#handleManageProfile" prefHeight="37.0" prefWidth="154.0" styleClass="white-btn" text="Manage Profile">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>

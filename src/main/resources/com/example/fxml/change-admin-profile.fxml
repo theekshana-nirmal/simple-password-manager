@@ -11,27 +11,38 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="503.0" maxWidth="355.0" minHeight="503.0" minWidth="355.0" prefHeight="503.0" prefWidth="355.0" styleClass="mini-window" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.ChangePasswordController">
+<AnchorPane maxHeight="605.0" maxWidth="400.0" minHeight="550.0" minWidth="362.0" prefHeight="605.0" prefWidth="362.0" styleClass="mini-window" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controllers.ChangeAdminProfileController">
    <children>
-      <VBox alignment="CENTER" layoutX="24.0" layoutY="23.0" spacing="32.0" stylesheets="@../css/styles.css" AnchorPane.topAnchor="23.0">
+      <VBox alignment="CENTER" layoutX="27.0" layoutY="21.0" spacing="24.0" stylesheets="@../css/styles.css" AnchorPane.topAnchor="21.0">
          <children>
             <VBox alignment="CENTER" spacing="12.0">
                <children>
-                  <Label styleClass="title" text="Change Password" textAlignment="CENTER" />
-                  <Label prefWidth="347.0" styleClass="subtitle, subtitle-limited" text="Update the administrator password" textOverrun="CLIP" wrapText="true" />
+                  <Label styleClass="title" text="Admin Profile" textAlignment="CENTER" />
+                  <Label prefWidth="372.0" styleClass="subtitle, subtitle-limited" text="Update administrator username and password" textOverrun="CLIP" wrapText="true" />
                </children>
             </VBox>
-            <VBox spacing="8.0">
+            <VBox spacing="16.0">
                <children>
                   <VBox spacing="8.0">
                      <children>
                         <HBox spacing="2.0">
                            <children>
-                              <Label prefHeight="15.0" text="Old Password" />
+                              <Label prefHeight="15.0" text="Current Password" />
                               <Label prefHeight="15.0" text="*" textFill="#ff5454" />
                            </children>
                         </HBox>
-                        <PasswordField fx:id="currentPasswordField" promptText="Enter old admin password" />
+                        <PasswordField fx:id="currentPasswordField" promptText="Enter current admin password" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="8.0">
+                     <children>
+                        <HBox spacing="2.0">
+                           <children>
+                              <Label prefHeight="15.0" text="Username" />
+                              <Label prefHeight="15.0" text="*" textFill="#ff5454" />
+                           </children>
+                        </HBox>
+                        <TextField fx:id="usernameField" promptText="Enter new admin username" />
                      </children>
                   </VBox>
                   <VBox spacing="8.0">
@@ -60,7 +71,7 @@
             </VBox>
             <VBox spacing="16.0">
                <children>
-                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="36.0" prefWidth="350.0" text="Save">
+                  <Button fx:id="saveButton" mnemonicParsing="false" onAction="#handleSaveButton" prefHeight="36.0" prefWidth="350.0" text="Update Profile">
                      <styleClass>
                         <String fx:value="primary" />
                         <String fx:value="btn" />

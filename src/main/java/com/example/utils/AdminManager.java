@@ -33,13 +33,19 @@ public class AdminManager {
                         if (parts.length >= 2) {
                             storedEmail = parts[0];
                             storedPassword = parts[1];
+
+                            // Decrypt password if it's encrypted
+                            if (EncryptionUtils.isEncrypted(storedPassword)) {
+                                storedPassword = EncryptionUtils.decryptPassword(storedPassword);
+                            }
                         }
                     }
                 }
             } else {
-                // Create default admin file
+                // Create default admin file with encrypted password
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(adminFile))) {
-                    writer.write(DEFAULT_EMAIL + "," + DEFAULT_PASSWORD);
+                    String encryptedPassword = EncryptionUtils.encryptPassword(DEFAULT_PASSWORD);
+                    writer.write(DEFAULT_EMAIL + "," + encryptedPassword);
                     writer.newLine();
                 }
             }
@@ -62,7 +68,12 @@ public class AdminManager {
                     if (line != null && !line.trim().isEmpty()) {
                         String[] parts = line.split(",");
                         if (parts.length >= 2) {
-                            return parts[1];
+                            String storedPassword = parts[1];
+                            // Decrypt password if it's encrypted
+                            if (EncryptionUtils.isEncrypted(storedPassword)) {
+                                return EncryptionUtils.decryptPassword(storedPassword);
+                            }
+                            return storedPassword;
                         }
                     }
                 }
@@ -76,7 +87,31 @@ public class AdminManager {
         }
     }
 
-    public static boolean changePassword(String currentPassword, String newPassword) {
+    public static String getAdminEmail() {
+        try {
+            java.io.File adminFile = new java.io.File(ADMIN_DATA_FILE);
+
+            if (adminFile.exists()) {
+                try (BufferedReader reader = new BufferedReader(new FileReader(adminFile))) {
+                    String line = reader.readLine();
+                    if (line != null && !line.trim().isEmpty()) {
+                        String[] parts = line.split(",");
+                        if (parts.length >= 1) {
+                            return parts[0];
+                        }
+                    }
+                }
+            }
+
+            return DEFAULT_EMAIL;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return DEFAULT_EMAIL;
+        }
+    }
+
+    public static boolean updateAdminCredentials(String currentPassword, String newEmail, String newPassword) {
         try {
             // Verify current password first
             String storedPassword = getAdminPassword();
@@ -91,24 +126,11 @@ public class AdminManager {
             }
 
             java.io.File adminFile = new java.io.File(ADMIN_DATA_FILE);
-            String adminEmail = DEFAULT_EMAIL;
 
-            // Read current email if file exists
-            if (adminFile.exists()) {
-                try (BufferedReader reader = new BufferedReader(new FileReader(adminFile))) {
-                    String line = reader.readLine();
-                    if (line != null && !line.trim().isEmpty()) {
-                        String[] parts = line.split(",");
-                        if (parts.length >= 1) {
-                            adminEmail = parts[0];
-                        }
-                    }
-                }
-            }
-
-            // Write updated credentials
+            // Write updated credentials with encrypted password
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(adminFile))) {
-                writer.write(adminEmail + "," + newPassword);
+                String encryptedPassword = EncryptionUtils.encryptPassword(newPassword);
+                writer.write(newEmail + "," + encryptedPassword);
                 writer.newLine();
             }
 
@@ -117,6 +139,54 @@ public class AdminManager {
         } catch (IOException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    /**
+     * Migrates existing plain text admin passwords to encrypted format
+     * This method should be called during application startup
+     */
+    public static void migrateToEncryptedPasswords() {
+        try {
+            java.io.File adminFile = new java.io.File(ADMIN_DATA_FILE);
+
+            if (!adminFile.exists()) {
+                return; // No admin file exists, nothing to migrate
+            }
+
+            String adminEmail = DEFAULT_EMAIL;
+            String adminPassword = DEFAULT_PASSWORD;
+            boolean needsMigration = false;
+
+            // Read current credentials
+            try (BufferedReader reader = new BufferedReader(new FileReader(adminFile))) {
+                String line = reader.readLine();
+                if (line != null && !line.trim().isEmpty()) {
+                    String[] parts = line.split(",");
+                    if (parts.length >= 2) {
+                        adminEmail = parts[0];
+                        adminPassword = parts[1];
+
+                        // Check if password is already encrypted
+                        if (!EncryptionUtils.isEncrypted(adminPassword)) {
+                            needsMigration = true;
+                        }
+                    }
+                }
+            }
+
+            // Migrate if necessary
+            if (needsMigration) {
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(adminFile))) {
+                    String encryptedPassword = EncryptionUtils.encryptPassword(adminPassword);
+                    writer.write(adminEmail + "," + encryptedPassword);
+                    writer.newLine();
+                }
+                System.out.println("Admin password successfully migrated to encrypted format.");
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error during admin password migration: " + e.getMessage());
         }
     }
 }
