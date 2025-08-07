@@ -18,11 +18,10 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         // Migrate existing admin passwords to encrypted format
         AdminManager.migrateToEncryptedPasswords();
-
         primaryStage = stage; // Store the stage reference
         // Set the stage style to TRANSPARENT
         stage.initStyle(StageStyle.TRANSPARENT);
-        Parent root = loadFXML("fxml/login");
+        Parent root = loadFXML("fxml/welcome");
         scene = new Scene(root);
 
         scene.setFill(javafx.scene.paint.Color.TRANSPARENT); // Load the reset stylesheet first

@@ -28,11 +28,15 @@
    </left>
    <right>
       <AnchorPane maxWidth="377.0" minHeight="445.0" minWidth="377.0" prefHeight="445.0" prefWidth="377.0" styleClass="right-pane" BorderPane.alignment="CENTER">
-         <children>
-            <VBox layoutX="35.0" layoutY="21.0" spacing="32.0" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="16.0">
+         <children>            <VBox layoutX="35.0" layoutY="21.0" spacing="32.0" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="16.0">
                <children>
                   <VBox spacing="12.0">
                      <children>
+                        <HBox alignment="CENTER_LEFT" spacing="8.0">
+                           <children>
+                              <Label fx:id="backLabel" onMouseClicked="#handleBackClick" styleClass="link" text="← Back" />
+                           </children>
+                        </HBox>
                         <Label styleClass="title" text="Sign in" />
                         <Label prefWidth="347.0" styleClass="subtitle, subtitle-limited" text="Enter you email and password to sign in to your account" textOverrun="CLIP" wrapText="true" />
                      </children>
