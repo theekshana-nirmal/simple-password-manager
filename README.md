@@ -101,7 +101,7 @@ This project demonstrates the four fundamental OOP concepts:
 
 ## 💻 Usage
 
-![Password Manager Main Interface](images/password-manager-main.png)
+![Password Manager Main Interface](images/welcome-screen.png)
 
 ### Getting Started
 1. **Launch the application**
