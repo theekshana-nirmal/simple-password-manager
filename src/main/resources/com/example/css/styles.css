@@ -315,6 +315,23 @@
     -fx-text-fill: #6B1CB0;
 }
 
+.link-white {
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: bold;
+    font-weight: bold;
+
+    margin: 0;
+    -fx-margin: 0;
+    padding: 0;
+    -fx-padding: 0;
+}
+
+.link-white:hover {
+    -fx-underline: true;
+    cursor: pointer;
+    -fx-cursor: hand;
+}
+
 /* Action button styles for table */
 .action-btn {
     background-color: transparent;

@@ -27,12 +27,11 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminController implements Initializable {
-
     @FXML
     private ImageView closeButton;
 
     @FXML
-    private Button changePasswordButton;
+    private Button manageProfileButton;
 
     @FXML
     private Button logoutButton;
@@ -166,17 +165,26 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    private void handleChangePassword() {
+    private void handleLogout() {
         try {
-            // Load the change-password FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/change-password.fxml"));
+            App.setRoot("fxml/admin-login");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleManageProfile() {
+        try {
+            // Load the change-admin-profile FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/fxml/change-admin-profile.fxml"));
             Parent root = loader.load();
 
             // Create a new stage for the popup
-            Stage changePasswordStage = new Stage();
-            changePasswordStage.initModality(Modality.APPLICATION_MODAL);
-            changePasswordStage.initStyle(StageStyle.TRANSPARENT);
-            changePasswordStage.setTitle("Change Password");
+            Stage manageProfileStage = new Stage();
+            manageProfileStage.initModality(Modality.APPLICATION_MODAL);
+            manageProfileStage.initStyle(StageStyle.TRANSPARENT);
+            manageProfileStage.setTitle("Manage Admin Profile");
 
             // Create scene and set it transparent
             Scene scene = new Scene(root);
@@ -186,26 +194,17 @@ public class AdminController implements Initializable {
             scene.getStylesheets().add(getClass().getResource("/com/example/css/reset.css").toExternalForm());
             scene.getStylesheets().add(getClass().getResource("/com/example/css/styles.css").toExternalForm());
 
-            changePasswordStage.setScene(scene);
+            manageProfileStage.setScene(scene);
 
             // Make the window draggable
-            makeDraggable(root, changePasswordStage);
+            makeDraggable(root, manageProfileStage);
             // Get the controller and set up callback
-            ChangePasswordController controller = loader.getController();
-            controller.setStage(changePasswordStage);
+            ChangeAdminProfileController controller = loader.getController();
+            controller.setStage(manageProfileStage);
 
             // Show the popup
-            changePasswordStage.showAndWait();
+            manageProfileStage.showAndWait();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void handleLogout() {
-        try {
-            App.setRoot("fxml/admin-login");
         } catch (IOException e) {
             e.printStackTrace();
         }
