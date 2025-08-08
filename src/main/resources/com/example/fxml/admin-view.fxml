@@ -68,11 +68,11 @@
                   <Image url="@../images/close-button.png" />
                </image>
             </ImageView>
-            <TableView fx:id="usersTable" layoutX="1.6" layoutY="95.0" minHeight="315.0" minWidth="754.0" prefHeight="315.0" prefWidth="754.0" stylesheets="@../css/table-styles.css" AnchorPane.leftAnchor="1.0">
+            <TableView fx:id="usersTable" layoutX="1.6" layoutY="95.0" maxHeight="315.0" maxWidth="726.0" minHeight="315.0" minWidth="726.0" prefHeight="315.0" prefWidth="726.0" stylesheets="@../css/table-styles.css" AnchorPane.leftAnchor="16.0">
               <columns>
                 <TableColumn fx:id="nameColumn" editable="false" maxWidth="242.0" minWidth="-1.0" prefWidth="242.0" resizable="false" sortable="false" text="Name" />
-                <TableColumn fx:id="emailColumn" editable="false" maxWidth="313.5999755859375" minWidth="-1.0" prefWidth="313.5999755859375" resizable="false" sortable="false" text="Email" />
-                  <TableColumn fx:id="actionsColumn" editable="false" maxWidth="284.0001220703125" minWidth="-1.0" prefWidth="196.7999267578125" resizable="false" sortable="false" text="Actions" />
+                <TableColumn fx:id="emailColumn" editable="false" maxWidth="242.0" minWidth="-1.0" prefWidth="242.0" resizable="false" sortable="false" text="Email" />
+                  <TableColumn fx:id="actionsColumn" editable="false" maxWidth="240.0" minWidth="-1.0" prefWidth="240.0" resizable="false" sortable="false" text="Actions" />
               </columns>
             </TableView>
          </children>

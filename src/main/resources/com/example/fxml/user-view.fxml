@@ -51,7 +51,7 @@
    <right>
       <AnchorPane maxHeight="504.0" maxWidth="758.0" minHeight="504.0" minWidth="758.0" prefHeight="504.0" prefWidth="758.0" styleClass="right-pane" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="2.0" layoutY="16.799999237060547" spacing="32.0">
+            <VBox alignment="CENTER" layoutX="16.0" layoutY="20.0" spacing="32.0">
                <children>
                   <VBox alignment="CENTER" spacing="16.0">
                      <children>
@@ -69,12 +69,12 @@
                         </Button>
                      </children>
                   </VBox>
-                  <TableView fx:id="passwordTable" minHeight="315.0" minWidth="754.0" prefHeight="315.0" prefWidth="754.0" stylesheets="@../css/table-styles.css">
+                  <TableView fx:id="passwordTable" maxHeight="315.0" maxWidth="726.0" minHeight="315.0" minWidth="726.0" prefHeight="315.0" prefWidth="726.0" stylesheets="@../css/table-styles.css">
                     <columns>
-                      <TableColumn fx:id="websiteColumn" editable="false" maxWidth="242.0" minWidth="-1.0" prefWidth="242.0" resizable="false" sortable="false" text="Website/App Name" />
-                      <TableColumn fx:id="usernameColumn" editable="false" maxWidth="208.0" minWidth="-1.0" prefWidth="208.0" resizable="false" sortable="false" text="Username/Email" />
-                        <TableColumn fx:id="passwordColumn" editable="false" maxWidth="152.0" minWidth="-1.0" prefWidth="152.0" resizable="false" sortable="false" text="Password" />
-                        <TableColumn fx:id="actionsColumn" editable="false" maxWidth="150.0" minWidth="-1.0" prefWidth="150.0" resizable="false" sortable="false" text="Actions" />
+                      <TableColumn fx:id="websiteColumn" editable="false" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" sortable="false" text="Website/App Name" />
+                      <TableColumn fx:id="usernameColumn" editable="false" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" resizable="false" sortable="false" text="Username/Email" />
+                        <TableColumn fx:id="passwordColumn" editable="false" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" resizable="false" sortable="false" text="Password" />
+                        <TableColumn fx:id="actionsColumn" editable="false" maxWidth="163.0" minWidth="163.0" prefWidth="163.0" resizable="false" sortable="false" text="Actions" />
                     </columns>
                   </TableView>
                </children>
