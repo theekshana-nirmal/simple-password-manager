@@ -38,7 +38,6 @@ A secure and user-friendly desktop application developed using Java and JavaFX. 
 - **View Passwords** - Display stored passwords with decryption
 - **Edit Passwords** - Update existing password information
 - **Delete Passwords** - Remove unwanted password entries
-- **Search & Filter** - Find specific passwords quickly
 
 ## 🖥️ Application Overview
 
@@ -72,7 +71,6 @@ This project demonstrates the four fundamental OOP concepts:
 ### 4. **Polymorphism** 🔄
 - Different implementations of `getDecryptedPassword()` method
 - Same method name, different behavior in User vs Guest modes
-- Runtime method resolution
 
 ## 🚀 Installation
 
@@ -118,9 +116,8 @@ This project demonstrates the four fundamental OOP concepts:
 
 ### For Administrators
 - Manage user accounts
-- View system statistics
-- Configure application settings
-- Access admin-only features
+- View registered users list
+- Update admin profile settings
 
 ## 📁 Project Structure
 
